@@ -34,6 +34,7 @@ describe('Analytics & Impact Service Integrity', () => {
       estimatedTransitMinutes: 32,
       isEmergency: false,
       batchNumber: 'EPI-2026-C8',
+      notes: 'Test automated dispatch record',
     };
 
     const metrics = calculateImpactMetrics(INITIAL_STOCK_RECORDS, SEED_MEDICINES, [transfer], []);

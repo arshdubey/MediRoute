@@ -26,17 +26,27 @@ async function exportChat() {
     } catch (e) {}
   }
 
+  // Emoji removal regex for professional presentation
+  const emojiRegex = /[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}\u{1F680}-\u{1F6FF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}]/gu;
+  const cleanText = (text) => text ? text.replace(emojiRegex, '').replace(/  +/g, ' ') : '';
+
   // 1. Generate Markdown file
   let md = '# MediRoute Development — AI Pair Programming Chat History\n\n';
   for (const m of messages) {
-    const roleTitle = m.role === 'user' ? '### 👤 User' : '### 🤖 Antigravity AI';
+    const roleTitle = m.role === 'user' ? '### User' : '### Antigravity AI';
     md += `${roleTitle} *(${m.time ? new Date(m.time).toLocaleString() : ''})*\n\n`;
-    md += m.content + '\n\n---\n\n';
+    md += cleanText(m.content) + '\n\n---\n\n';
   }
   fs.writeFileSync('chat-history.md', md, 'utf-8');
 
+  // Clean messages for HTML
+  const sanitizedMessages = messages.map(m => ({
+    ...m,
+    content: cleanText(m.content)
+  }));
+
   // 2. Generate Standalone HTML file
-  const jsonMsgs = JSON.stringify(messages).replace(/</g, '\\u003c');
+  const jsonMsgs = JSON.stringify(sanitizedMessages).replace(/</g, '\\u003c');
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,7 +169,7 @@ async function exportChat() {
       
       const header = document.createElement('div');
       header.className = 'msg-header';
-      header.innerHTML = '<span class="' + (m.role === 'user' ? 'user-tag' : 'model-tag') + '">' + (m.role === 'user' ? '👤 User' : '🤖 Antigravity AI') + '</span><span class="time-tag">' + (m.time ? new Date(m.time).toLocaleTimeString() : '') + '</span>';
+      header.innerHTML = '<span class="' + (m.role === 'user' ? 'user-tag' : 'model-tag') + '">' + (m.role === 'user' ? 'User' : 'Antigravity AI') + '</span><span class="time-tag">' + (m.time ? new Date(m.time).toLocaleTimeString() : '') + '</span>';
       
       const body = document.createElement('div');
       body.className = 'content';

@@ -5,7 +5,7 @@
 
 ---
 
-## 🏥 Problem Statement
+## Problem Statement
 In regional healthcare ecosystems, clinic inventories frequently operate in operational silos:
 - Community clinics face acute stockouts of life-saving medicines (e.g. Epinephrine, Naloxone, pediatric antibiotics) due to local surges or delayed central supply chains.
 - Concurrently, nearby general hospitals or urgent care facilities often hold surplus reserves, with some batches sitting at risk of expiring unused.
@@ -15,7 +15,7 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 
 ---
 
-## ⚡ Core Features & Implemented Enhancements
+## Core Features & System Capabilities
 
 ### 1. Operations Command Dashboard
 - High-level KPI monitoring: linked facilities (5), monitored medicines (12), critical shortages ($\le 2.5$ days runway), low-stock alerts, confirmed demo transfers, and projected stockouts averted.
@@ -47,15 +47,15 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 
 ### 4. Deterministic Smart Redistribution Engine
 - **Algorithmic Candidate Evaluation**: Evaluates all network facilities holding the requested medicine formulation.
-- 🛡️ **Mathematical Donor Safety Invariant**:
+- **Mathematical Donor Safety Invariant**:
   $$\text{donor.postTransferStock} \ge \text{donor.minSafetyStock}$$
   *The algorithm never recommends or executes transfers that would leave a donor clinic below its designated safety reserve.*
-- 🚫 **Rigorous Rejection Rules**:
+- **Rigorous Rejection Constraints**:
   - Expired batches ($\text{daysToExpiry} \le 0$) are strictly blocked.
   - Short shelf-life batches ($\text{shelf life} < 48\text{h}$ or less than courier transit duration) are strictly blocked.
   - Incompatible formulations or facilities with insufficient surplus are rejected with explicit rationale.
-- 🔄 **Atomic Application-Level Updates**: Prevents duplicate execution, prevents negative stock, and mutates both donor and recipient inventories in a single atomic transaction.
-- 🔍 **Interactive Match Donor Panel**:
+- **Atomic Application-Level Updates**: Prevents duplicate execution, prevents negative stock, and mutates both donor and recipient inventories in a single atomic transaction.
+- **Interactive Match Donor Panel**:
   - Displays donor surplus, recipient need, before/after safety reserves, road distance, courier transit time, batch expiry, and plain-language explanation.
   - Displays **"Candidate Facilities Refused by Constraint Engine"** with specific rejection reasons.
 
@@ -78,7 +78,7 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 
 ---
 
-## 🧪 Seed Data Architecture
+## Network Data Architecture
 
 ### Monitored Facilities
 1. **Metro Hope General Hospital (`MHG`)**: Regional Level-1 trauma center (380 beds).
@@ -98,7 +98,7 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 - **Frontend**: React 19, TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS (custom healthcare navy, crisp slate, clinical teal, and emergency rose palette)
@@ -109,7 +109,7 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v18 or later recommended)
@@ -151,5 +151,5 @@ Creates an optimized production bundle in `dist/`.
 
 ---
 
-## 📜 Ethical & Regulatory Disclaimer
+## Ethical & Regulatory Disclaimer
 *MediRoute is a hackathon demonstration prototype operating on synthetic clinical data. It does not interface with municipal Computer-Aided Dispatch (CAD) or emergency services (911/999/112). All projected impact metrics represent estimated algorithmic simulation results and are not verified clinical accounting.*
