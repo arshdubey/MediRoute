@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Swiss & Editorial Design Tokens */
+  --color-paper: #F7F5F0;
+  --color-ink: #142536;
+  --color-concrete: #E5E3DC;
+  --color-vermilion: #E74732;
+  --color-graphite: #4A4A46;
+  --color-muted: #77766F;
+  --color-white: #FFFFFF;
+  --color-green: #1D7055;
+  --color-amber: #C4841D;
+
+  /* Typography scale */
+  --font-serif: 'Newsreader', 'DM Serif Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Restrained Translucent Surface Tokens */
+  --glass-surface: rgba(247, 245, 240, 0.88);
+  --glass-blur: 10px;
+  --glass-border: #E5E3DC;
+}
+
+@layer base {
+  body {
+    background-color: #F7F5F0;
+    color: #142536;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, .editorial-heading {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Print-Inspired Background Texture Layer (Subtle, Zero Scroll Repaint) */
+.editorial-canvas-bg {
+  background-color: #F7F5F0;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(229, 227, 220, 0.4) 0px, transparent 40%),
+    radial-gradient(at 90% 90%, rgba(229, 227, 220, 0.3) 0px, transparent 50%);
+}
+
+/* Editorial Print Surface Cards */
+.editorial-surface {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E3DC;
+}
+
+.editorial-surface-muted {
+  background-color: #EFECE4;
+  border: 1px solid #E5E3DC;
+}
+
+.editorial-surface-paper {
+  background-color: #F7F5F0;
+  border: 1px solid #E5E3DC;
+}
+
+/* Hairline Rules */
+.hairline-b {
+  border-bottom: 1px solid #E5E3DC;
+}
+
+.hairline-t {
+  border-top: 1px solid #E5E3DC;
+}
+
+.hairline-r {
+  border-right: 1px solid #E5E3DC;
+}
+
+.hairline-l {
+  border-left: 1px solid #E5E3DC;
+}
+
+/* Status Badges */
+.badge-critical {
+  background-color: #FDF3F1;
+  color: #CB3520;
+  border: 1px solid #F6CCC5;
+}
+
+.badge-optimal {
+  background-color: #F0F7F4;
+  color: #175641;
+  border: 1px solid #C0DFD4;
+}
+
+.badge-surplus {
+  background-color: #F5F5F3;
+  color: #383835;
+  border: 1px solid #D1D1CC;
+}
+
+.badge-warning {
+  background-color: #FEF9EF;
+  color: #9C6614;
+  border: 1px solid #FAE0AD;
+}
+
+.badge-neutral {
+  background-color: #F7F5F0;
+  color: #5F5E58;
+  border: 1px solid #E5E3DC;
+}
+
+/* Subtle Interactive Hover */
+.editorial-hover {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease;
+}
+.editorial-hover:hover {
+  transform: translateY(-1px);
+  border-color: #142536;
+}
+
+/* Restrained Floating Glass Material (Used Only for Overlays and Dropdowns) */
+.glass-overlay {
+  background: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #E5E3DC;
+  box-shadow: 0 12px 32px -4px rgba(20, 37, 54, 0.08);
+}
+
+/* Minimal Print Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E3DC;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C0BCB1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
