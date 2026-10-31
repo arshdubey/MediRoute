@@ -22,11 +22,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'CRITICAL':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#FDF3F1] text-[#CB3520] border border-[#F6CCC5] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#FDF3F3] text-[#BB232B] border border-[#F5CACD] ${sizeClasses}`}
         >
           {showIcon && (
             <AlertTriangle
-              className={size === 'sm' ? 'w-3 h-3 text-[#E74732]' : 'w-3.5 h-3.5 text-[#E74732]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#BB232B]' : 'w-3.5 h-3.5 text-[#BB232B]'}
             />
           )}
           <span>Critical Shortage</span>
@@ -36,11 +36,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'LOW_STOCK':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#FEF9EF] text-[#9C6614] border border-[#FAE0AD] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#FEF9EF] text-[#B87A14] border border-[#FAE0AD] ${sizeClasses}`}
         >
           {showIcon && (
             <AlertCircle
-              className={size === 'sm' ? 'w-3 h-3 text-[#C4841D]' : 'w-3.5 h-3.5 text-[#C4841D]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#B87A14]' : 'w-3.5 h-3.5 text-[#B87A14]'}
             />
           )}
           <span>Low Stock</span>
@@ -50,11 +50,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'EXPIRING_SOON':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#F7F5F0] text-[#4A4A46] border border-[#D5D3CC] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8] ${sizeClasses}`}
         >
           {showIcon && (
             <Clock
-              className={size === 'sm' ? 'w-3 h-3 text-[#5A5954]' : 'w-3.5 h-3.5 text-[#5A5954]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#737373]' : 'w-3.5 h-3.5 text-[#737373]'}
             />
           )}
           <span>Expiring Soon</span>
@@ -64,11 +64,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'SURPLUS':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#F5F5F3] text-[#383835] border border-[#D1D1CC] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#F0F1FA] text-[#2C3480] border border-[#C7CAEB] font-semibold ${sizeClasses}`}
         >
           {showIcon && (
             <TrendingUp
-              className={size === 'sm' ? 'w-3 h-3 text-[#4A4A46]' : 'w-3.5 h-3.5 text-[#4A4A46]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#2C3480]' : 'w-3.5 h-3.5 text-[#2C3480]'}
             />
           )}
           <span>Surplus Available</span>
@@ -78,11 +78,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'OPTIMAL':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#F0F7F4] text-[#175641] border border-[#C0DFD4] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#F0F8F5] text-[#16815D] border border-[#BFDFD2] ${sizeClasses}`}
         >
           {showIcon && (
             <CheckCircle2
-              className={size === 'sm' ? 'w-3 h-3 text-[#1D7055]' : 'w-3.5 h-3.5 text-[#1D7055]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#16815D]' : 'w-3.5 h-3.5 text-[#16815D]'}
             />
           )}
           <span>Optimal Reserve</span>
@@ -92,11 +92,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'HIGH':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#FDF3F1] text-[#CB3520] border border-[#F6CCC5] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#FDF3F3] text-[#BB232B] border border-[#F5CACD] ${sizeClasses}`}
         >
           {showIcon && (
             <AlertCircle
-              className={size === 'sm' ? 'w-3 h-3 text-[#E74732]' : 'w-3.5 h-3.5 text-[#E74732]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#BB232B]' : 'w-3.5 h-3.5 text-[#BB232B]'}
             />
           )}
           <span>High Priority</span>
@@ -106,11 +106,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     case 'MEDIUM':
       return (
         <span
-          className={`inline-flex items-center gap-1.5 rounded bg-[#F5F5F3] text-[#4A4A46] border border-[#E5E3DC] ${sizeClasses}`}
+          className={`inline-flex items-center gap-1.5 rounded-md bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8] ${sizeClasses}`}
         >
           {showIcon && (
             <ShieldCheck
-              className={size === 'sm' ? 'w-3 h-3 text-[#4A4A46]' : 'w-3.5 h-3.5 text-[#4A4A46]'}
+              className={size === 'sm' ? 'w-3 h-3 text-[#737373]' : 'w-3.5 h-3.5 text-[#737373]'}
             />
           )}
           <span>Standard Priority</span>

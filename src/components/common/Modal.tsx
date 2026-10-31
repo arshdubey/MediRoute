@@ -43,31 +43,31 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#142536]/60 backdrop-blur-xs transition-opacity duration-200"
+        className="fixed inset-0 bg-[#080808]/70 backdrop-blur-xs transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div className="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
         <div
-          className={`relative transform overflow-hidden rounded-xl bg-[#FFFFFF] text-left shadow-xl transition-all sm:my-8 w-full ${maxWidthClass} border border-[#E5E3DC]`}
+          className={`relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all sm:my-8 w-full ${maxWidthClass} border border-[#E5E5E8]`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#E5E3DC] px-6 py-4 bg-[#FFFFFF]">
+          <div className="flex items-center justify-between border-b border-[#E5E5E8] px-6 py-4 bg-white">
             <div>
-              <h3 id="modal-title" className="text-lg font-bold text-[#142536] tracking-tight font-sans">
+              <h3 id="modal-title" className="text-xl font-serif text-[#080808] tracking-tight">
                 {title}
               </h3>
               {subtitle && (
-                <p className="text-xs font-medium text-[#77766F] mt-0.5 tracking-tight font-sans">
+                <p className="text-xs text-[#737373] mt-1 tracking-tight font-sans">
                   {subtitle}
                 </p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="rounded p-1.5 text-[#77766F] hover:bg-[#F7F5F0] hover:text-[#142536] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536]"
+              className="rounded p-1.5 text-[#737373] hover:bg-[#F5F5F7] hover:text-[#080808] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
               aria-label="Close dialog"
             >
               <X className="w-4 h-4" />

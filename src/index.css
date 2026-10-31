@@ -3,32 +3,33 @@
 @tailwind utilities;
 
 :root {
-  /* Swiss & Editorial Design Tokens */
-  --color-paper: #F7F5F0;
-  --color-ink: #142536;
-  --color-concrete: #E5E3DC;
-  --color-vermilion: #E74732;
-  --color-graphite: #4A4A46;
-  --color-muted: #77766F;
+  /* Luxury Healthcare Design Tokens (Cobalt / Black / Pure White) */
+  --color-paper: #F5F5F7;
+  --color-ink: #080808;
+  --color-concrete: #E5E5E8;
+  --color-vermilion: #BB232B;
+  --color-graphite: #080808;
+  --color-muted: #737373;
   --color-white: #FFFFFF;
-  --color-green: #1D7055;
-  --color-amber: #C4841D;
+  --color-green: #16815D;
+  --color-cobalt: #2C3480;
+  --color-amber: #B87A14;
 
   /* Typography scale */
-  --font-serif: 'Newsreader', 'DM Serif Display', Georgia, Cambria, 'Times New Roman', serif;
+  --font-serif: 'Playfair Display', 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Restrained Translucent Surface Tokens */
-  --glass-surface: rgba(247, 245, 240, 0.88);
-  --glass-blur: 10px;
-  --glass-border: #E5E3DC;
+  --glass-surface: rgba(245, 245, 247, 0.92);
+  --glass-blur: 12px;
+  --glass-border: #E5E5E8;
 }
 
 @layer base {
   body {
-    background-color: #F7F5F0;
-    color: #142536;
+    background-color: #F5F5F7;
+    color: #080808;
     font-family: var(--font-sans);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -37,7 +38,7 @@
 
   h1, h2, .editorial-heading {
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 
   .tabular-nums {
@@ -45,28 +46,28 @@
   }
 }
 
-/* Print-Inspired Background Texture Layer (Subtle, Zero Scroll Repaint) */
+/* Subtle Neutral Texture Layer */
 .editorial-canvas-bg {
-  background-color: #F7F5F0;
+  background-color: #F5F5F7;
   background-image: 
-    radial-gradient(at 10% 10%, rgba(229, 227, 220, 0.4) 0px, transparent 40%),
-    radial-gradient(at 90% 90%, rgba(229, 227, 220, 0.3) 0px, transparent 50%);
+    radial-gradient(at 10% 10%, rgba(229, 229, 232, 0.5) 0px, transparent 40%),
+    radial-gradient(at 90% 90%, rgba(229, 229, 232, 0.4) 0px, transparent 50%);
 }
 
 /* Editorial Print Surface Cards */
 .editorial-surface {
   background-color: #FFFFFF;
-  border: 1px solid #E5E3DC;
+  border: 1px solid #E5E5E8;
 }
 
 .editorial-surface-muted {
-  background-color: #EFECE4;
-  border: 1px solid #E5E3DC;
+  background-color: #F5F5F7;
+  border: 1px solid #E5E5E8;
 }
 
 .editorial-surface-paper {
-  background-color: #F7F5F0;
-  border: 1px solid #E5E3DC;
+  background-color: #F5F5F7;
+  border: 1px solid #E5E5E8;
 }
 
 /* Hairline Rules */

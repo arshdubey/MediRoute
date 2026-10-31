@@ -67,19 +67,19 @@ export const ExpiryIntelligenceView: React.FC = () => {
         {/* Eyebrow */}
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#5A6E85] font-semibold">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#737373] font-semibold">
               REGIONAL SUPPLY CHAIN / EXPIRY INTELLIGENCE
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E74732]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2C3480]" />
           </div>
 
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={runFEFODemoScenario}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-sans font-medium text-white bg-[#142536] hover:bg-[#1E344A] transition-colors shadow-xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-sans font-medium text-white bg-[#2C3480] hover:bg-[#232a6b] transition-colors shadow-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
             >
-              <Play className="w-3.5 h-3.5 text-[#E74732]" />
+              <Play className="w-3.5 h-3.5 text-white" />
               <span>Launch The 24-Day Challenge</span>
             </button>
           </div>
@@ -87,21 +87,21 @@ export const ExpiryIntelligenceView: React.FC = () => {
 
         {/* Oversized Editorial Serif Heading */}
         <div className="space-y-2">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[#142536] font-normal leading-[1.08]">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[#080808] font-normal leading-[1.08]">
             Every medicine deserves to be used.
           </h1>
-          <p className="text-sm sm:text-base text-[#5A6E85] font-sans max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-[#737373] font-sans max-w-3xl leading-relaxed">
             Identify expiring pharmaceutical batches, calculate consumption feasibility, and redistribute eligible stock before it becomes medical waste.
           </p>
         </div>
 
         {/* Synthetic Data & Regulatory Notice */}
-        <div className="bg-[#FFFFFF] border-l-4 border-[#142536] border-y border-r border-[#E2DDD5] p-3 rounded-r text-xs text-[#5A6E85] font-sans flex items-center justify-between shadow-xs">
+        <div className="bg-white border-l-4 border-l-[#2C3480] border-y border-r border-[#E5E5E8] p-3 rounded-r-lg text-xs text-[#737373] font-sans flex items-center justify-between shadow-xs">
           <div>
-            <strong className="text-[#142536]">Demonstration & Compliance Standard: </strong>
+            <strong className="text-[#080808]">Demonstration & Compliance Standard: </strong>
             First-Expiry-First-Out (FEFO) optimization engine operates on seeded regional hospital batches. All proposals strictly preserve donor safety reserves.
           </div>
-          <span className="hidden sm:inline-block font-mono text-[11px] text-[#718294]">
+          <span className="hidden sm:inline-block font-mono text-[11px] text-[#737373]">
             v2.4 FEFO Deterministic
           </span>
         </div>

@@ -240,19 +240,19 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-[#142536]/70 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-[#080808]/70 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="bg-[#FFFFFF] border border-[#E2DDD5] w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[75vh]"
+        className="bg-[#FFFFFF] border border-[#E5E5E8] w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[75vh]"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-[#E2DDD5] bg-[#FFFFFF]">
-          <Search className="w-5 h-5 text-[#5A6E85] flex-shrink-0" />
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-[#E5E5E8] bg-[#FFFFFF]">
+          <Search className="w-5 h-5 text-[#737373] flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -262,28 +262,28 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               setSelectedIndex(0);
             }}
             placeholder="Search medicines, clinics, batch numbers, or actions (e.g. 'Insulin', 'PFM', 'Reset')..."
-            className="w-full text-sm font-sans text-[#142536] placeholder-[#8EA0B2] bg-transparent focus:outline-none"
+            className="w-full text-sm font-sans text-[#080808] placeholder-[#737373] bg-transparent focus:outline-none"
           />
           {query ? (
             <button
               type="button"
               onClick={() => setQuery('')}
-              className="text-[#8EA0B2] hover:text-[#142536] p-1 rounded"
+              className="text-[#737373] hover:text-[#080808] p-1 rounded transition-colors"
               title="Clear search"
             >
               <X className="w-4 h-4" />
             </button>
           ) : (
-            <span className="text-[10px] font-mono text-[#8EA0B2] bg-[#F7F5F0] border border-[#E2DDD5] px-1.5 py-0.5 rounded">
+            <span className="text-[10px] font-mono text-[#737373] bg-[#F5F5F7] border border-[#E5E5E8] px-1.5 py-0.5 rounded">
               ESC to close
             </span>
           )}
         </div>
 
         {/* Results List */}
-        <div className="flex-1 overflow-y-auto divide-y divide-[#F2EFE9] p-2">
+        <div className="flex-1 overflow-y-auto divide-y divide-[#E5E5E8]/60 p-2">
           {results.length === 0 ? (
-            <div className="py-12 text-center text-xs text-[#718294] font-sans">
+            <div className="py-12 text-center text-xs text-[#737373] font-sans">
               No matching medicines, clinics, or commands found for &ldquo;{query}&rdquo;.
             </div>
           ) : (
@@ -298,16 +298,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`p-3 rounded-lg flex items-center justify-between gap-3 cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-[#142536] text-[#FFFFFF]'
-                      : 'hover:bg-[#F7F5F0] text-[#142536]'
+                      ? 'bg-[#2C3480] text-[#FFFFFF]'
+                      : 'hover:bg-[#F5F5F7] text-[#080808]'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
                       className={`w-8 h-8 rounded flex items-center justify-center flex-shrink-0 ${
                         isSelected
-                          ? 'bg-[#1E344A] text-[#F7F5F0]'
-                          : 'bg-[#F7F5F0] text-[#5A6E85]'
+                          ? 'bg-[#1F2561] text-white'
+                          : 'bg-[#F5F5F7] text-[#737373]'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -319,10 +319,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                           {item.title}
                         </span>
                         <span
-                          className={`text-[9px] font-mono uppercase px-1.5 py-0.2 rounded ${
+                          className={`text-[9px] font-mono uppercase px-1.5 py-0.5 rounded ${
                             isSelected
-                              ? 'bg-[#1E344A] text-[#A6B4C2]'
-                              : 'bg-[#EAE6DF] text-[#718294]'
+                              ? 'bg-[#1F2561] text-white/80'
+                              : 'bg-[#E5E5E8] text-[#737373]'
                           }`}
                         >
                           {item.category}
@@ -330,7 +330,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       </div>
                       <p
                         className={`text-[11px] truncate font-sans ${
-                          isSelected ? 'text-[#CBD5E1]' : 'text-[#718294]'
+                          isSelected ? 'text-white/80' : 'text-[#737373]'
                         }`}
                       >
                         {item.subtitle}
@@ -339,9 +339,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   </div>
 
                   {isSelected && (
-                    <div className="flex items-center gap-1 text-[10px] font-mono text-[#A6B4C2] flex-shrink-0">
+                    <div className="flex items-center gap-1 text-[10px] font-mono text-white/80 flex-shrink-0">
                       <span>Jump</span>
-                      <CornerDownLeft className="w-3 h-3 text-[#A6B4C2]" />
+                      <CornerDownLeft className="w-3 h-3 text-white/80" />
                     </div>
                   )}
                 </div>
@@ -351,7 +351,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         </div>
 
         {/* Footer Navigation Hints */}
-        <div className="px-4 py-2 border-t border-[#E2DDD5] bg-[#FAF8F5] flex items-center justify-between text-[11px] text-[#718294] font-mono">
+        <div className="px-4 py-2 border-t border-[#E5E5E8] bg-[#F5F5F7] flex items-center justify-between text-[11px] text-[#737373] font-mono">
           <div className="flex items-center gap-3">
             <span>&uarr;&darr; Navigate</span>
             <span>&crarr; Select</span>
