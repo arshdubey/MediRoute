@@ -13,6 +13,7 @@ import {
   Sparkles,
   PlayCircle,
   ArrowUpRight,
+  CalendarClock,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -30,7 +31,7 @@ import { calculateClinicSummaries } from '../../services/analyticsService';
 import { calculateRecipientTargetNeed } from '../../services/redistributionEngine';
 
 interface DashboardViewProps {
-  onNavigateToTab: (tab: 'inventory' | 'forecasting' | 'redistribution' | 'emergency' | 'analytics') => void;
+  onNavigateToTab: (tab: 'inventory' | 'forecasting' | 'redistribution' | 'emergency' | 'analytics' | 'expiry') => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab }) => {
@@ -40,6 +41,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
     stockRecords,
     enrichedStock,
     activeRecommendations,
+    fefoRecommendations,
     transfers,
     impactMetrics,
     selectedClinicId,
@@ -269,6 +271,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                 className="bg-[#FFFFFF] hover:bg-[#F7F5F0] text-[#142536] font-semibold text-xs px-3 py-2 rounded border border-[#E5E3DC] hover:border-[#142536] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536] focus-visible:ring-offset-2"
               >
                 Depletion Runways
+              </button>
+
+              <button
+                onClick={() => onNavigateToTab('expiry')}
+                className="bg-[#FFFFFF] hover:bg-[#F7F5F0] text-[#142536] font-semibold text-xs px-3 py-2 rounded border border-[#E5E3DC] hover:border-[#142536] transition-all cursor-pointer flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536] focus-visible:ring-offset-2"
+              >
+                <CalendarClock className="w-3.5 h-3.5 text-[#5A6E85]" />
+                <span>Expiry Intelligence</span>
+                {fefoRecommendations.length > 0 && (
+                  <span className="bg-[#142536] text-white px-1.5 py-0.2 rounded text-[10px] font-mono">
+                    {fefoRecommendations.length}
+                  </span>
+                )}
               </button>
             </div>
 

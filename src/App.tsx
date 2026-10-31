@@ -10,6 +10,7 @@ import { ForecastingView } from './components/forecasting/ForecastingView';
 import { RedistributionView } from './components/redistribution/RedistributionView';
 import { EmergencyView } from './components/emergency/EmergencyView';
 import { AnalyticsView } from './components/analytics/AnalyticsView';
+import { ExpiryIntelligenceView } from './components/expiry/ExpiryIntelligenceView';
 import { MatchDonorModal } from './components/redistribution/MatchDonorModal';
 import { ScrollProgress } from './components/motion';
 
@@ -48,6 +49,7 @@ const MainLayout: React.FC = () => {
           )}
           {currentTab === 'forecasting' && <ForecastingView />}
           {currentTab === 'redistribution' && <RedistributionView />}
+          {currentTab === 'expiry' && <ExpiryIntelligenceView />}
           {currentTab === 'emergency' && (
             <EmergencyView onNavigateToRedistribution={() => setCurrentTab('redistribution')} />
           )}

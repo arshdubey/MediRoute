@@ -24,6 +24,13 @@ import {
 } from '../services/redistributionEngine';
 import { calculateImpactMetrics, ImpactMetrics } from '../services/analyticsService';
 import { getRouteInfo } from '../data/distanceMatrix';
+import {
+  generateFEFORecommendations,
+  calculateExpiryOverviewMetrics,
+  validateFEFOTransferSafety,
+  FEFORedistributionRecommendation,
+  ExpiryOverviewMetrics,
+} from '../services/fefoEngine';
 
 interface AppContextType {
   clinics: Clinic[];
@@ -37,6 +44,13 @@ interface AppContextType {
   selectedClinicId: string | 'ALL';
   setSelectedClinicId: (id: string | 'ALL') => void;
   impactMetrics: ImpactMetrics;
+  // Expiry Intelligence state
+  fefoRecommendations: FEFORedistributionRecommendation[];
+  expiryOverviewMetrics: ExpiryOverviewMetrics;
+  confirmFEFOTransfer: (recommendation: FEFORedistributionRecommendation) => { success: boolean; error?: string };
+  fefoWalkthroughActive: boolean;
+  setFefoWalkthroughActive: (active: boolean) => void;
+  runFEFODemoScenario: () => void;
   toasts: ToastMessage[];
   addToast: (type: ToastMessage['type'], title: string, message: string) => void;
   dismissToast: (id: string) => void;
@@ -243,6 +257,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const impactMetrics = useMemo(() => {
     return calculateImpactMetrics(stockRecords, medicines, transfers, recommendations);
   }, [stockRecords, medicines, transfers, recommendations]);
+
+  // Expiry Intelligence: FEFO recommendations computed reactively
+  const fefoRecommendations = useMemo(() => {
+    return generateFEFORecommendations(stockRecords, clinics, medicines, new Date(), transfers);
+  }, [stockRecords, clinics, medicines, transfers]);
+
+  // Expiry Intelligence: Overview metrics computed from actual state
+  const expiryOverviewMetrics = useMemo(() => {
+    return calculateExpiryOverviewMetrics(stockRecords, clinics, medicines, transfers, new Date());
+  }, [stockRecords, clinics, medicines, transfers]);
+
+  const [fefoWalkthroughActive, setFefoWalkthroughActive] = useState<boolean>(false);
 
   // Update existing stock record
   const updateStockRecord = useCallback((updated: StockRecord) => {
@@ -529,6 +555,103 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     [stockRecords, activeEmergency, medicines, addToast]
   );
 
+  // Expiry Intelligence: Confirm and execute a FEFO transfer atomically
+  const confirmFEFOTransfer = useCallback(
+    (fefoRec: FEFORedistributionRecommendation): { success: boolean; error?: string } => {
+      // 1. Guard against duplicate execution
+      if (
+        transfers.some(
+          (t) =>
+            t.status === 'COMPLETED' &&
+            t.donorClinicId === fefoRec.donorClinicId &&
+            t.recipientClinicId === fefoRec.recipientClinicId &&
+            t.medicineId === fefoRec.medicineId &&
+            t.batchNumber === fefoRec.batchNumber
+        )
+      ) {
+        const error = `FEFO transfer for Batch #${fefoRec.batchNumber} has already been confirmed in this session.`;
+        addToast('warning', 'Duplicate Transfer Blocked', error);
+        return { success: false, error };
+      }
+
+      // 2. Fetch fresh stock records
+      const donorStock = stockRecords.find(
+        (sr) => sr.clinicId === fefoRec.donorClinicId && sr.medicineId === fefoRec.medicineId
+      );
+      const recipientStock = stockRecords.find(
+        (sr) => sr.clinicId === fefoRec.recipientClinicId && sr.medicineId === fefoRec.medicineId
+      );
+
+      if (!donorStock || !recipientStock) {
+        const error = 'Participating facility inventory record missing from database.';
+        addToast('error', 'Transfer Failed', error);
+        return { success: false, error };
+      }
+
+      // 3. Safety validation check
+      const route = getRouteInfo(fefoRec.donorClinicId, fefoRec.recipientClinicId);
+      const safetyCheck = validateFEFOTransferSafety(donorStock, recipientStock, fefoRec.recommendedQuantity, {
+        transitMinutes: route.transitMinutes,
+      });
+
+      if (!safetyCheck.isValid) {
+        const error = safetyCheck.error || 'FEFO safety validation failed.';
+        addToast('error', 'Transfer Blocked', error);
+        return { success: false, error };
+      }
+
+      // 4. Atomic stock update
+      setStockRecords((prev) =>
+        prev.map((item) => {
+          if (item.id === donorStock.id) {
+            return {
+              ...item,
+              currentStock: item.currentStock - fefoRec.recommendedQuantity,
+            };
+          }
+          if (item.id === recipientStock.id) {
+            return {
+              ...item,
+              currentStock: item.currentStock + fefoRec.recommendedQuantity,
+              lastRestocked: new Date().toISOString().split('T')[0],
+            };
+          }
+          return item;
+        })
+      );
+
+      // 5. Append to transfers audit ledger
+      const newTransfer: TransferRecord = {
+        id: `tr-fefo-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`,
+        recommendationId: fefoRec.id,
+        medicineId: fefoRec.medicineId,
+        donorClinicId: fefoRec.donorClinicId,
+        recipientClinicId: fefoRec.recipientClinicId,
+        quantity: fefoRec.recommendedQuantity,
+        urgency: fefoRec.urgency,
+        status: 'COMPLETED',
+        timestamp: new Date().toISOString(),
+        notes: `[FEFO Expiry Protection] Dispatched ${fefoRec.recommendedQuantity} units of Batch #${fefoRec.batchNumber} (expiring in ${fefoRec.daysToExpiry}d). Preserved $${fefoRec.estimatedWastageValueSaved.toFixed(2)} in clinical inventory value.`,
+        distanceKm: fefoRec.distanceKm,
+        estimatedTransitMinutes: fefoRec.estimatedTransitMinutes,
+        isEmergency: fefoRec.urgency === 'CRITICAL' || activeEmergency !== null,
+        batchNumber: fefoRec.batchNumber,
+      };
+
+      setTransfers((prev) => [newTransfer, ...prev]);
+
+      const medName = fefoRec.medicineName;
+      addToast(
+        'success',
+        'FEFO Transfer Executed',
+        `Dispatched ${fefoRec.recommendedQuantity} units of ${medName} from ${fefoRec.donorClinicCode} to ${fefoRec.recipientClinicCode}. Preserved $${fefoRec.estimatedWastageValueSaved.toFixed(2)} in clinical stock.`
+      );
+
+      return { success: true };
+    },
+    [transfers, stockRecords, activeEmergency, addToast]
+  );
+
   // Trigger emergency scenario
   const triggerEmergency = useCallback(
     (scenarioId: string) => {
@@ -640,11 +763,34 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setRecOverrides({});
     setSelectedClinicId('ALL');
     setInspectingMatchItem(null);
+    setFefoWalkthroughActive(false);
 
     addToast(
       'info',
       'Demo Data Reset',
       'Synthetic inventory, clinics, and transfers restored to original baseline.'
+    );
+  }, [addToast]);
+
+  // Run FEFO Walkthrough Demo Scenario: "The 24-Day Challenge"
+  const runFEFODemoScenario = useCallback(() => {
+    // Reset to clean baseline first
+    localStorage.removeItem(STORAGE_KEYS.STOCK_RECORDS);
+    localStorage.removeItem(STORAGE_KEYS.TRANSFERS);
+    localStorage.removeItem(STORAGE_KEYS.ACTIVE_EMERGENCY);
+    localStorage.removeItem(STORAGE_KEYS.RECOMMENDATIONS_STATE);
+
+    setStockRecords(INITIAL_STOCK_RECORDS);
+    setTransfers(INITIAL_TRANSFERS);
+    setActiveEmergency(null);
+    setRecOverrides({});
+    setSelectedClinicId('ALL');
+    setFefoWalkthroughActive(true);
+
+    addToast(
+      'info',
+      'Guided Demo Active: The 24-Day Challenge',
+      'Pinecrest holds 90 units of Insulin Glargine expiring in 24 days. Evaluating local consumption vs Metro Hope deficit.'
     );
   }, [addToast]);
 
@@ -706,6 +852,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     selectedClinicId,
     setSelectedClinicId,
     impactMetrics,
+    fefoRecommendations,
+    expiryOverviewMetrics,
+    confirmFEFOTransfer,
+    fefoWalkthroughActive,
+    setFefoWalkthroughActive,
+    runFEFODemoScenario,
     toasts,
     addToast,
     dismissToast,

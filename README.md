@@ -76,6 +76,18 @@ In regional healthcare ecosystems, clinic inventories frequently operate in oper
 - **Verifiable Audit Table**: Full timestamped ledger with batch numbers, transit distances, and recipient notes.
 - **CSV Manifest Export**: Download a timestamped `.csv` file containing the complete audit trail of transfers.
 
+### 7. Expiry Intelligence & FEFO Wastage Prevention
+- **Deterministic FEFO Engine**: First-Expiry-First-Out algorithmic optimization matching approaching-expiry batches with verified consumption capacity across connected clinics.
+- **Local Consumption Feasibility Modeling**: Projects exact clinical intake before expiration ($\text{dailyBurn} \times \text{daysToExpiry}$) to isolate at-risk surplus without compromising donor safety reserves.
+- **Standardized Expiry Risk Stratification**:
+  - *Critical*: Expires within 1 to 7 days.
+  - *High Risk*: Expires within 8 to 30 days.
+  - *Moderate & Watch*: Early surveillance within 31 to 90 days.
+  - *Quarantined Expired*: Batches $\le 0$ days are strictly isolated and barred from redistribution.
+- **The 24-Day Challenge Walkthrough**: Reproducible 8-step guided demonstration resolving Pinecrest's 90-unit Insulin batch (24-day expiry) by reallocating 42 at-risk units to Metro Hope General, averting $1,197.00 in medical waste.
+- **Interactive Wastage Prevention Simulator**: Dynamic before-and-after scenario comparison with quantity testing, visual allocation breakdown, and live constraint feedback.
+- **Separated Impact Ledger**: Distinct accounting separating speculative model projections from verified session audit records.
+
 ---
 
 ## Network Data Architecture
@@ -139,9 +151,10 @@ Runs the Vitest test suite covering:
 2. **Insufficient donor stock**: Rejection when donor has zero surplus or stock $\le$ safety stock.
 3. **Expiry constraints**: Rejection of expired batches and batches with insufficient shelf life ($< 48\text{h}$ or less than transit duration).
 4. **Recipient demand calculation**: Transfers bringing recipient to safety threshold without exceeding capacity limits.
-5. **Reproducible demo scenario**: Selecting valid donor with safe surplus and refusing unsafe alternatives.
-6. **Duplicate transfer prevention**: Guarding against duplicate execution and ensuring idempotency.
-7. **Shortage calculations**: Days until stockout, fractional rounding, zero consumption handling, and 14-day projections.
+5. **FEFO algorithm & expiry risk tiers**: First-Expiry-First-Out prioritization, local burn feasibility, and recipient absorption.
+6. **The 24-Day Challenge workflow**: End-to-end verification of Pinecrest insulin reallocation avoiding $1,197 in biomedical waste.
+7. **Duplicate transfer prevention**: Guarding against duplicate execution and ensuring idempotency.
+8. **Shortage calculations**: Days until stockout, fractional rounding, zero consumption handling, and 14-day projections.
 
 ### Building for Production
 ```bash

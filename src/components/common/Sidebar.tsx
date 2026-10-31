@@ -7,10 +7,18 @@ import {
   Flame,
   BarChart3,
   ShieldCheck,
+  CalendarClock,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
-export type NavTab = 'dashboard' | 'inventory' | 'forecasting' | 'redistribution' | 'emergency' | 'analytics';
+export type NavTab =
+  | 'dashboard'
+  | 'inventory'
+  | 'forecasting'
+  | 'redistribution'
+  | 'expiry'
+  | 'emergency'
+  | 'analytics';
 
 interface SidebarProps {
   currentTab: NavTab;
@@ -18,7 +26,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab }) => {
-  const { activeRecommendations, activeEmergency, impactMetrics } = useApp();
+  const { activeRecommendations, activeEmergency, impactMetrics, fefoRecommendations } = useApp();
 
   const navItems = [
     {
@@ -45,6 +53,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab }) => 
       icon: ArrowLeftRight,
       badge: activeRecommendations.length > 0 ? activeRecommendations.length : null,
       badgeColor: 'bg-[#1D3145] text-[#E74732] border border-[#2B435C]',
+    },
+    {
+      id: 'expiry' as NavTab,
+      label: 'Expiry Intelligence',
+      icon: CalendarClock,
+      badge: fefoRecommendations.length > 0 ? fefoRecommendations.length : null,
+      badgeColor: 'bg-[#1D3145] text-[#FBBF24] border border-[#2B435C]',
     },
     {
       id: 'emergency' as NavTab,
