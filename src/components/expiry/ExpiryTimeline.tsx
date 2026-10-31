@@ -14,6 +14,8 @@ interface ExpiryTimelineProps {
   medicines: Medicine[];
   onSelectBatch?: (analysis: ExpiryBatchAnalysis) => void;
   selectedBatchNumber?: string | null;
+  activeFilter?: TimelineFilter;
+  onFilterChange?: (filter: TimelineFilter) => void;
 }
 
 type TimelineFilter = '7D' | '30D' | '60D' | '90D' | 'ALL' | 'EXPIRED';
@@ -24,8 +26,15 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
   medicines,
   onSelectBatch,
   selectedBatchNumber,
+  activeFilter,
+  onFilterChange,
 }) => {
-  const [filter, setFilter] = useState<TimelineFilter>('ALL');
+  const [internalFilter, setInternalFilter] = useState<TimelineFilter>('ALL');
+  const filter = activeFilter !== undefined ? activeFilter : internalFilter;
+  const setFilter = (next: TimelineFilter) => {
+    setInternalFilter(next);
+    if (onFilterChange) onFilterChange(next);
+  };
   const [clinicFilter, setClinicFilter] = useState<string>('ALL');
 
   const clinicMap = useMemo(() => new Map(clinics.map((c) => [c.id, c])), [clinics]);

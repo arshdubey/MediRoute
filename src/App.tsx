@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { DemoNoticeBanner } from './components/common/DemoNoticeBanner';
 import { Navbar } from './components/common/Navbar';
 import { Sidebar, NavTab } from './components/common/Sidebar';
 import { ToastContainer } from './components/common/ToastContainer';
+import { CommandPalette } from './components/common/CommandPalette';
 import { DashboardView } from './components/dashboard/DashboardView';
 import { InventoryView } from './components/inventory/InventoryView';
 import { ForecastingView } from './components/forecasting/ForecastingView';
@@ -16,6 +17,19 @@ import { ScrollProgress } from './components/motion';
 
 const MainLayout: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>('dashboard');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
+
+  // Global keyboard shortcut: Ctrl+K / Cmd+K to toggle Command Palette
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F7F5F0] flex flex-col text-[#142536] font-sans selection:bg-[#E74732] selection:text-white relative overflow-x-hidden">
@@ -32,7 +46,10 @@ const MainLayout: React.FC = () => {
       <DemoNoticeBanner />
 
       {/* Editorial Operations Navbar */}
-      <Navbar onTriggerEmergencyModal={() => setCurrentTab('emergency')} />
+      <Navbar
+        onTriggerEmergencyModal={() => setCurrentTab('emergency')}
+        onOpenSearch={() => setIsCommandPaletteOpen(true)}
+      />
 
       {/* Body Layout: Sidebar + Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row relative">
@@ -59,6 +76,13 @@ const MainLayout: React.FC = () => {
 
       {/* Reusable Clinical Match Donor Inspection Modal */}
       <MatchDonorModal />
+
+      {/* Global Quick Search & Command Palette */}
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={() => setIsCommandPaletteOpen(false)}
+        onNavigateTab={(tab) => setCurrentTab(tab)}
+      />
 
       {/* Global Notifications */}
       <ToastContainer />

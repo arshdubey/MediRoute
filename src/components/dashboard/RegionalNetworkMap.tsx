@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Clinic, EnrichedStockItem, RedistributionRecommendation, EmergencyScenario, TransferRecord } from '../../types';
 import { getRouteInfo } from '../../data/distanceMatrix';
-import { Truck, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Truck, ShieldCheck, ArrowRight, CheckCircle2, Filter, X } from 'lucide-react';
 
 interface RegionalNetworkMapProps {
   clinics: Clinic[];
@@ -15,6 +15,7 @@ interface RegionalNetworkMapProps {
     medicineName?: string;
     recommendedQuantity?: number;
   } | null;
+  selectedClinicId?: string | 'ALL';
   onSelectClinic?: (clinicId: string) => void;
 }
 
@@ -25,10 +26,17 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
   activeEmergency,
   transfers = [],
   focusedCorridor = null,
+  selectedClinicId = 'ALL',
   onSelectClinic,
 }) => {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+
+  // Synchronize effective selected clinic between internal click state and global AppContext
+  const effectiveSelectedClinicId =
+    selectedClinicId && selectedClinicId !== 'ALL'
+      ? selectedClinicId
+      : selectedNodeId;
 
   // Top pending recommendation dictates the primary proposed transfer corridor
   const topRec = activeRecommendations[0] || null;
@@ -121,8 +129,8 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
   const recipientClinic = clinics.find((c) => c.id === effectiveRecipientId);
 
   // Selected clinic detail for inspect mode
-  const activeInspectedClinic = selectedNodeId
-    ? clinics.find((c) => c.id === selectedNodeId)
+  const activeInspectedClinic = effectiveSelectedClinicId
+    ? clinics.find((c) => c.id === effectiveSelectedClinicId)
     : hoveredNodeId
     ? clinics.find((c) => c.id === hoveredNodeId)
     : null;
@@ -202,13 +210,29 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
     <div className="bg-white rounded-xl border border-concrete p-4 sm:p-5 flex flex-col justify-between h-full shadow-print-sm">
       {/* Topology Header */}
       <div className="flex items-center justify-between pb-2.5 border-b border-concrete">
-        <div>
-          <span className="text-[10px] font-mono font-semibold tracking-widest text-muted uppercase">
-            REGIONAL TOPOLOGY
-          </span>
-          <h3 className="text-sm font-serif font-normal text-ink">
-            5-Facility Network Corridor
-          </h3>
+        <div className="flex items-center gap-2">
+          <div>
+            <span className="text-[10px] font-mono font-semibold tracking-widest text-muted uppercase">
+              REGIONAL TOPOLOGY
+            </span>
+            <h3 className="text-sm font-serif font-normal text-ink">
+              5-Facility Network Corridor
+            </h3>
+          </div>
+          {selectedClinicId && selectedClinicId !== 'ALL' && (
+            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono bg-paper px-2 py-0.5 rounded border border-concrete text-ink font-semibold">
+              <span>Filtered: {clinics.find((c) => c.id === selectedClinicId)?.code || selectedClinicId}</span>
+              {onSelectClinic && (
+                <button
+                  onClick={() => onSelectClinic(selectedClinicId)}
+                  className="hover:text-vermilion cursor-pointer ml-0.5"
+                  title="Clear filter"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              )}
+            </span>
+          )}
         </div>
 
         {activeEmergency ? (
@@ -379,7 +403,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
               };
               const isDonor = status.role === 'DONOR';
               const isRecipient = status.role === 'RECIPIENT';
-              const isSelected = selectedNodeId === clinic.id;
+              const isSelected = effectiveSelectedClinicId === clinic.id;
               const isHovered = hoveredNodeId === clinic.id;
 
               let nodeFill = '#FFFFFF';
@@ -412,13 +436,15 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                   onMouseEnter={() => setHoveredNodeId(clinic.id)}
                   onMouseLeave={() => setHoveredNodeId(null)}
                   onClick={() => {
-                    setSelectedNodeId(selectedNodeId === clinic.id ? null : clinic.id);
+                    const next = effectiveSelectedClinicId === clinic.id ? null : clinic.id;
+                    setSelectedNodeId(next);
                     if (onSelectClinic) onSelectClinic(clinic.id);
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setSelectedNodeId(selectedNodeId === clinic.id ? null : clinic.id);
+                      const next = effectiveSelectedClinicId === clinic.id ? null : clinic.id;
+                      setSelectedNodeId(next);
                       if (onSelectClinic) onSelectClinic(clinic.id);
                     }
                   }}
@@ -428,15 +454,30 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                     <circle
                       cx={pos.x}
                       cy={pos.y}
-                      r={isHovered ? 21 : 18}
+                      r={isSelected ? 23 : isHovered ? 21 : 18}
                       fill={
-                        isRecipient
+                        isSelected
+                          ? 'rgba(20, 37, 54, 0.16)'
+                          : isRecipient
                           ? 'rgba(231, 71, 50, 0.12)'
                           : isDonor
                           ? 'rgba(29, 112, 85, 0.12)'
                           : 'rgba(20, 37, 54, 0.08)'
                       }
                       className="transition-all duration-150"
+                    />
+                  )}
+
+                  {/* Active Selected Dashed Ring */}
+                  {isSelected && (
+                    <circle
+                      cx={pos.x}
+                      cy={pos.y}
+                      r={17.5}
+                      fill="none"
+                      stroke="#142536"
+                      strokeWidth={1.8}
+                      strokeDasharray="3 2"
                     />
                   )}
 
@@ -521,22 +562,62 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
           <div className="flex items-center gap-1.5 min-w-0">
             {activeInspectedClinic && inspectedStatus ? (
-              <>
-                <span className="font-mono font-bold text-ink bg-paper px-1.5 py-0.5 rounded border border-concrete text-[10px]">
-                  {activeInspectedClinic.code}
-                </span>
-                <span className="font-semibold text-ink truncate text-[11px]">
-                  {activeInspectedClinic.name}:
-                </span>
-                <span className="text-muted font-mono text-[11px] whitespace-nowrap">
-                  {inspectedStatus.totalUnits}u in stock
-                </span>
-                {inspectedStatus.criticalCount > 0 && (
-                  <span className="text-vermilion font-bold font-mono text-[11px] whitespace-nowrap">
-                    ({inspectedStatus.criticalCount} deficit)
-                  </span>
-                )}
-              </>
+              <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#F7F5F0] p-2 rounded-lg border border-[#E5E3DC]">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="font-mono font-bold text-white bg-[#142536] px-1.5 py-0.5 rounded text-[10px]">
+                      {activeInspectedClinic.code}
+                    </span>
+                    <span className="font-semibold text-ink text-xs truncate">
+                      {activeInspectedClinic.name}
+                    </span>
+                    <span className="text-[10px] text-graphite bg-white px-1.5 py-0.5 rounded border border-concrete hidden md:inline-block">
+                      {activeInspectedClinic.type}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10px] text-graphite mt-1 font-mono flex-wrap">
+                    <span>{activeInspectedClinic.bedsCapacity} beds</span>
+                    <span>•</span>
+                    <span className="text-ink font-semibold">{inspectedStatus.totalUnits}u in stock</span>
+                    {inspectedStatus.criticalCount > 0 ? (
+                      <span className="text-vermilion font-bold">
+                        • {inspectedStatus.criticalCount} deficits
+                      </span>
+                    ) : (
+                      <span className="text-clinicalGreen font-medium">
+                        • Safe Reserve
+                      </span>
+                    )}
+                    <span className="hidden lg:inline">• Lead: {activeInspectedClinic.inventoryManager}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-shrink-0 self-end sm:self-auto">
+                  {onSelectClinic && (
+                    <button
+                      onClick={() => onSelectClinic(activeInspectedClinic.id)}
+                      className={`text-[10px] font-sans font-semibold px-2 py-1 rounded border transition-colors cursor-pointer flex items-center gap-1 ${
+                        selectedClinicId === activeInspectedClinic.id
+                          ? 'bg-[#142536] text-white border-[#142536]'
+                          : 'bg-white text-ink border-concrete hover:bg-concrete/40'
+                      }`}
+                    >
+                      <Filter className="w-3 h-3" />
+                      <span>{selectedClinicId === activeInspectedClinic.id ? 'Filtered (Reset)' : 'Filter Dashboard'}</span>
+                    </button>
+                  )}
+                  <button
+                    onClick={() => {
+                      setSelectedNodeId(null);
+                      setHoveredNodeId(null);
+                    }}
+                    className="text-graphite hover:text-ink p-1 rounded hover:bg-concrete/40 cursor-pointer"
+                    title="Dismiss inspect card"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
             ) : corridorMode === 'FOCUSED' && activeRoute && donorClinic && recipientClinic ? (
               <>
                 <Truck className="w-3.5 h-3.5 text-vermilion flex-shrink-0" />
@@ -577,18 +658,11 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
             )}
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0 text-[10px] font-mono text-muted self-end sm:self-auto">
-            {activeInspectedClinic ? (
-              <button
-                onClick={() => setSelectedNodeId(null)}
-                className="text-graphite hover:text-ink underline cursor-pointer"
-              >
-                Clear selection
-              </button>
-            ) : (
+          {!activeInspectedClinic && (
+            <div className="flex items-center gap-2 flex-shrink-0 text-[10px] font-mono text-muted self-end sm:self-auto">
               <span>Min Buffer: 25–40u</span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

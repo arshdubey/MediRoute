@@ -4,6 +4,7 @@ import { EnrichedStockItem, StockStatus, MedicineCategory } from '../../types';
 import { StatusBadge } from '../common/StatusBadge';
 import { StockEditModal } from './StockEditModal';
 import { AddStockModal } from './AddStockModal';
+import { MedicineInspectorDrawer } from './MedicineInspectorDrawer';
 import {
   Search,
   Plus,
@@ -12,6 +13,7 @@ import {
   AlertTriangle,
   ArrowRight,
   Sparkles,
+  Eye,
 } from 'lucide-react';
 import { Reveal } from '../motion/Reveal';
 
@@ -32,6 +34,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
   // Modals state
   const [editingItem, setEditingItem] = useState<EnrichedStockItem | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [inspectingDrawerItem, setInspectingDrawerItem] = useState<EnrichedStockItem | null>(null);
 
   // Distinct categories
   const categories = useMemo(() => {
@@ -191,10 +194,15 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
           </div>
 
           {/* Results counter & active sort info */}
-          <div className="flex flex-wrap items-center justify-between text-xs text-[#77766F] pt-3 border-t border-[#E5E3DC] font-medium font-sans">
-            <div>
-              Showing <strong className="text-[#142536] font-bold">{filteredItems.length}</strong> of{' '}
-              {enrichedStock.length} records
+          <div className="flex flex-wrap items-center justify-between text-xs text-[#77766F] pt-3 border-t border-[#E5E3DC] font-medium font-sans gap-2">
+            <div className="flex items-center gap-2">
+              <span>
+                Showing <strong className="text-[#142536] font-bold">{filteredItems.length}</strong> of{' '}
+                {enrichedStock.length} records
+              </span>
+              <span className="hidden lg:inline-block text-[#5A6E85] text-[11px] font-mono">
+                • Click any row to inspect clinical monograph &amp; regional 5-clinic distribution
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[#77766F]">Sorted by:</span>
@@ -274,9 +282,11 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
                     return (
                       <tr
                         key={item.id}
-                        className={`hover:bg-[#F7F5F0] transition-colors ${
+                        onClick={() => setInspectingDrawerItem(item)}
+                        className={`hover:bg-[#F2EFE9] transition-colors cursor-pointer ${
                           isCritical ? 'bg-[#FDF3F1]/50' : ''
                         }`}
+                        title="Click to view full clinical monograph and multi-clinic distribution"
                       >
                         {/* Medicine Info */}
                         <td className="py-3.5 px-4">
@@ -381,7 +391,21 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
                         <td className="py-3.5 px-4 text-right">
                           <div className="inline-flex items-center gap-1.5 justify-end">
                             <button
-                              onClick={() => setEditingItem(item)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setInspectingDrawerItem(item);
+                              }}
+                              className="p-1.5 text-[#5A6E85] hover:text-[#142536] hover:bg-[#EAE6DF] rounded transition-colors cursor-pointer"
+                              title="Inspect monograph & multi-facility runway"
+                            >
+                              <Eye className="w-3.5 h-3.5" />
+                            </button>
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setEditingItem(item);
+                              }}
                               className="p-1.5 text-[#77766F] hover:text-[#142536] hover:bg-[#F7F5F0] rounded transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#142536]"
                               title="Edit stock details"
                             >
@@ -390,7 +414,10 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
 
                             {(item.calc.status === 'CRITICAL' || item.calc.status === 'LOW_STOCK') && (
                               <button
-                                onClick={() => openMatchDonorModal(item)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openMatchDonorModal(item);
+                                }}
                                 className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#142536] bg-[#F7F5F0] hover:bg-[#142536] hover:text-white px-2.5 py-1 rounded border border-[#E5E3DC] hover:border-[#142536] transition-all cursor-pointer active:scale-95 shadow-xs font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536] focus-visible:ring-offset-1"
                                 title={`Match eligible donor facility for ${item.medicine.name}`}
                               >
@@ -420,6 +447,21 @@ export const InventoryView: React.FC<InventoryViewProps> = ({ onNavigateToRedist
 
       {/* Add Stock Modal */}
       <AddStockModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} />
+
+      {/* Clinical Medicine Inspector Drawer */}
+      <MedicineInspectorDrawer
+        item={inspectingDrawerItem}
+        isOpen={inspectingDrawerItem !== null}
+        onClose={() => setInspectingDrawerItem(null)}
+        onEdit={(item) => {
+          setInspectingDrawerItem(null);
+          setEditingItem(item);
+        }}
+        onMatchDonor={(item) => {
+          setInspectingDrawerItem(null);
+          openMatchDonorModal(item);
+        }}
+      />
     </div>
   );
 };

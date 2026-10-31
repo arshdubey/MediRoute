@@ -45,6 +45,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
     transfers,
     impactMetrics,
     selectedClinicId,
+    setSelectedClinicId,
     activeEmergency,
     openMatchDonorModal,
     matchDonorForRecord,
@@ -303,6 +304,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
             activeEmergency={activeEmergency}
             transfers={transfers}
             focusedCorridor={focusedCorridor}
+            selectedClinicId={selectedClinicId}
+            onSelectClinic={(clinicId) => {
+              setSelectedClinicId(selectedClinicId === clinicId ? 'ALL' : clinicId);
+            }}
           />
         </div>
       </div>

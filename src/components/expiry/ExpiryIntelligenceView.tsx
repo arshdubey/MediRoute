@@ -135,6 +135,8 @@ export const ExpiryIntelligenceView: React.FC = () => {
           clinics={clinics}
           medicines={medicines}
           selectedBatchNumber={selectedBatch?.batchNumber}
+          activeFilter={timelineFilter}
+          onFilterChange={(f) => setTimelineFilter(f)}
           onSelectBatch={(batch) => {
             setSelectedBatch(batch);
             // If this batch matches a recommendation, select it

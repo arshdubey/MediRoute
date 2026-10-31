@@ -1,12 +1,13 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { Building2, AlertTriangle, Flame } from 'lucide-react';
+import { Building2, AlertTriangle, Flame, Search } from 'lucide-react';
 
 interface NavbarProps {
   onTriggerEmergencyModal: () => void;
+  onOpenSearch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onTriggerEmergencyModal }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onTriggerEmergencyModal, onOpenSearch }) => {
   const {
     clinics,
     selectedClinicId,
@@ -67,6 +68,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onTriggerEmergencyModal }) => {
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Quick Command Search Trigger Button */}
+            {onOpenSearch && (
+              <button
+                type="button"
+                onClick={onOpenSearch}
+                className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 text-xs text-[#718294] bg-[#F7F5F0] hover:bg-[#EAE6DF] border border-[#E5E3DC] hover:border-[#142536] rounded transition-all cursor-pointer font-sans"
+                title="Universal Search (Ctrl+K)"
+              >
+                <Search className="w-3.5 h-3.5 text-[#5A6E85]" />
+                <span className="text-[#142536] font-medium">Search</span>
+                <kbd className="text-[10px] font-mono bg-white px-1.5 py-0.2 rounded border border-[#D5CFBF] text-[#718294]">
+                  Ctrl K
+                </kbd>
+              </button>
+            )}
+
             {/* Clinic Filter Dropdown */}
             <div className="relative flex items-center">
               <Building2 className="w-3.5 h-3.5 text-[#77766F] absolute left-2.5 pointer-events-none" />
