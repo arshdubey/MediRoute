@@ -38,7 +38,7 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
 
   if (!currentRec) {
     return (
-      <div className="bg-white p-6 rounded-lg border border-[#E5E5E8] text-center text-xs text-[#737373] font-sans">
+      <div className="bg-[#171923] p-6 rounded-lg border border-[#2D3142] text-center text-xs text-[#A0A0AA] font-sans">
         No active expiry recommendations available for simulation.
       </div>
     );
@@ -78,27 +78,27 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
   );
 
   return (
-    <div className="bg-white rounded-lg border border-[#E5E5E8] p-5 sm:p-6 shadow-xs space-y-6">
+    <div className="bg-[#171923] rounded-lg border border-[#2D3142] p-5 sm:p-6 shadow-sm space-y-6">
       {/* Simulator Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-[#E5E5E8]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-[#2D3142]">
         <div>
           <div className="flex items-center gap-2">
-            <Sliders className="w-5 h-5 text-[#2C3480]" />
-            <h3 className="font-serif text-xl sm:text-2xl text-[#080808] font-normal tracking-tight">
+            <Sliders className="w-5 h-5 text-blue-400" />
+            <h3 className="font-serif text-xl sm:text-2xl text-white font-normal tracking-tight">
               Interactive Wastage Prevention Simulator
             </h3>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8]">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#222431] text-[#A0A0AA] border border-[#2D3142]">
               Deterministic Model
             </span>
           </div>
-          <p className="text-xs text-[#737373] font-sans mt-0.5">
+          <p className="text-xs text-[#A0A0AA] font-sans mt-0.5">
             Compare pharmaceutical expiry exposure before vs. after proposed redistribution. Adjust parameters to test clinical constraints.
           </p>
         </div>
 
         {/* Recommendation Selector Dropdown */}
         <div className="flex items-center gap-2">
-          <label htmlFor="sim-batch-select" className="text-xs text-[#737373] font-sans">
+          <label htmlFor="sim-batch-select" className="text-xs text-[#A0A0AA] font-sans">
             Simulated Batch:
           </label>
           <select
@@ -108,7 +108,7 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
               const found = allRecommendations.find((r) => r.id === e.target.value);
               if (found) onSelectRecommendation(found);
             }}
-            className="text-xs font-mono bg-[#F5F5F7] border border-[#E5E5E8] rounded-lg px-3 py-1.5 text-[#080808] font-medium focus:outline-none focus:ring-1 focus:ring-[#2C3480]"
+            className="text-xs font-mono bg-[#222431] border border-[#2D3142] rounded-lg px-3 py-1.5 text-white font-medium focus:outline-none focus:ring-1 focus:ring-[#2C3480]"
           >
             {allRecommendations.map((r) => (
               <option key={r.id} value={r.id}>
@@ -120,27 +120,27 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
       </div>
 
       {/* Interactive Quantity Slider Control */}
-      <div className="bg-[#F5F5F7] p-4 rounded-lg border border-[#E5E5E8] space-y-3">
+      <div className="bg-[#222431] p-4 rounded-lg border border-[#2D3142] space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="space-y-0.5">
-            <span className="text-xs font-semibold text-[#080808] font-sans">
+            <span className="text-xs font-semibold text-white font-sans">
               Test Transfer Allocation Quantity
             </span>
-            <span className="text-[11px] text-[#737373] font-sans block">
+            <span className="text-[11px] text-[#A0A0AA] font-sans block">
               FEFO Algorithm recommended exactly{' '}
-              <strong className="font-mono text-[#080808]">{currentRec.recommendedQuantity} units</strong>.
+              <strong className="font-mono text-white">{currentRec.recommendedQuantity} units</strong>.
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-2xl font-mono font-bold text-[#080808]">
+            <span className="text-2xl font-mono font-bold text-white">
               {simulatedQty}{' '}
-              <span className="text-xs text-[#737373] font-normal font-sans">units</span>
+              <span className="text-xs text-[#A0A0AA] font-normal font-sans">units</span>
             </span>
             <button
               type="button"
               onClick={() => setSimulatedQty(currentRec.recommendedQuantity)}
-              className="inline-flex items-center gap-1 text-[11px] font-sans text-[#737373] hover:text-[#080808] bg-white px-2.5 py-1 rounded-lg border border-[#E5E5E8] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 text-[11px] font-sans text-[#A0A0AA] hover:text-white bg-[#171923] px-2.5 py-1 rounded-lg border border-[#2D3142] transition-colors cursor-pointer"
               title="Reset to recommended baseline"
             >
               <RotateCcw className="w-3 h-3" />
@@ -159,16 +159,16 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
           className="w-full accent-[#2C3480] cursor-pointer"
         />
 
-        <div className="flex justify-between text-[10px] font-mono text-[#737373]">
+        <div className="flex justify-between text-[10px] font-mono text-[#A0A0AA]">
           <span>0 units (No transfer)</span>
-          <span className="text-[#080808] font-semibold">Recommended: {currentRec.recommendedQuantity} units</span>
+          <span className="text-white font-semibold">Recommended: {currentRec.recommendedQuantity} units</span>
           <span>Max tested: {maxSliderLimit} units</span>
         </div>
 
         {/* Live Constraint Feedback Banners */}
         {isDonorSafetyBreached && (
-          <div className="bg-[#BB232B]/10 border border-[#BB232B]/30 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#BB232B] font-sans">
-            <AlertTriangle className="w-4 h-4 text-[#BB232B] flex-shrink-0" />
+          <div className="bg-[#BB232B]/20 border border-[#BB232B]/40 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#FF6B72] font-sans">
+            <AlertTriangle className="w-4 h-4 text-[#FF6B72] flex-shrink-0" />
             <span>
               <strong>Constraint Invariant Violation:</strong> Transferring {simulatedQty} units leaves {currentRec.donorClinicCode} with {simulatedDonorPostStock} units, breaching its minimum reserve of {donorSafetyStock} units by {Math.abs(donorSafetyMargin)} units.
             </span>
@@ -176,8 +176,8 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
         )}
 
         {!isDonorSafetyBreached && isRecipientOverCapacity && (
-          <div className="bg-[#B87A14]/10 border border-[#B87A14]/30 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#B87A14] font-sans">
-            <AlertTriangle className="w-4 h-4 text-[#B87A14] flex-shrink-0" />
+          <div className="bg-[#D98A1A]/20 border border-[#D98A1A]/40 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#F5A623] font-sans">
+            <AlertTriangle className="w-4 h-4 text-[#F5A623] flex-shrink-0" />
             <span>
               <strong>Absorption Warning:</strong> {currentRec.recipientClinicCode} is projected to consume ~{recipientBurnCapacity} units before batch expiry. Allocating {simulatedQty} units may cause secondary expiry at destination.
             </span>
@@ -185,8 +185,8 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
         )}
 
         {!isDonorSafetyBreached && !isRecipientOverCapacity && (
-          <div className="bg-[#16815D]/10 border border-[#16815D]/30 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#16815D] font-sans">
-            <ShieldCheck className="w-4 h-4 text-[#16815D] flex-shrink-0" />
+          <div className="bg-[#16815D]/20 border border-[#16815D]/40 p-2.5 rounded-lg flex items-center gap-2 text-xs text-[#5AA98C] font-sans">
+            <ShieldCheck className="w-4 h-4 text-[#5AA98C] flex-shrink-0" />
             <span>
               <strong>All Clinical Invariants Satisfied:</strong> Donor preserves +{donorSafetyMargin} units above safety stock. Recipient absorbs 100% of transfer before expiry date.
             </span>
@@ -197,50 +197,50 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
       {/* Comparative Simulation Grid: Before vs After */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Scenario 1: BEFORE REDISTRIBUTION */}
-        <div className="bg-white p-4 sm:p-5 rounded-lg border border-[#E5E5E8] space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-[#E5E5E8]">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#737373]">
+        <div className="bg-[#171923] p-4 sm:p-5 rounded-lg border border-[#2D3142] space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-[#2D3142]">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#A0A0AA]">
               Status Quo: No Redistribution
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#BB232B]/10 text-[#BB232B] border border-[#BB232B]/30">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/40">
               Uncontrolled Expiry
             </span>
           </div>
 
           <div className="space-y-3 text-xs font-sans">
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Donor Starting Stock ({currentRec.donorClinicCode}):</span>
-              <span className="font-mono font-semibold text-[#080808]">{donorPreStock} units</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Donor Starting Stock ({currentRec.donorClinicCode}):</span>
+              <span className="font-mono font-semibold text-white">{donorPreStock} units</span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Local Projected Consumption (in {currentRec.daysToExpiry}d):</span>
-              <span className="font-mono text-[#080808]">{donorLocalBurn} units</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Local Projected Consumption (in {currentRec.daysToExpiry}d):</span>
+              <span className="font-mono text-white">{donorLocalBurn} units</span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Projected Unused Stock Expiring:</span>
-              <span className="font-mono font-bold text-[#BB232B]">{beforeWastageUnits} units</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Projected Unused Stock Expiring:</span>
+              <span className="font-mono font-bold text-[#FF6B72]">{beforeWastageUnits} units</span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Estimated Financial Wastage Loss:</span>
-              <span className="font-mono font-bold text-[#BB232B]">${beforeWastageValue.toFixed(2)}</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Estimated Financial Wastage Loss:</span>
+              <span className="font-mono font-bold text-[#FF6B72]">${beforeWastageValue.toFixed(2)}</span>
             </div>
 
             <div className="flex justify-between items-center py-1">
-              <span className="text-[#737373]">Recipient Stock Level ({currentRec.recipientClinicCode}):</span>
-              <span className="font-mono text-[#737373]">{recipientPreStock} units (Runway: {currentRec.recipientPreDays}d)</span>
+              <span className="text-[#A0A0AA]">Recipient Stock Level ({currentRec.recipientClinicCode}):</span>
+              <span className="font-mono text-[#A0A0AA]">{recipientPreStock} units (Runway: {currentRec.recipientPreDays}d)</span>
             </div>
           </div>
 
           {/* Visual Bar representation */}
           <div className="space-y-1.5 pt-2">
-            <div className="flex justify-between text-[11px] font-sans text-[#737373]">
+            <div className="flex justify-between text-[11px] font-sans text-[#A0A0AA]">
               <span>Inventory Fate Breakdown</span>
-              <span className="text-[#BB232B] font-semibold">{Math.round((beforeWastageUnits / donorPreStock) * 100)}% Wasted</span>
+              <span className="text-[#FF6B72] font-semibold">{Math.round((beforeWastageUnits / donorPreStock) * 100)}% Wasted</span>
             </div>
-            <div className="h-3 w-full bg-[#E5E5E8] rounded-full overflow-hidden flex">
+            <div className="h-3 w-full bg-[#222431] rounded-full overflow-hidden flex">
               <div
                 style={{ width: `${Math.round((donorLocalBurn / donorPreStock) * 100)}%` }}
                 className="bg-[#16815D] h-full"
@@ -252,7 +252,7 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
                 title="Wasted to Expiry"
               />
             </div>
-            <div className="flex justify-between text-[10px] text-[#737373]">
+            <div className="flex justify-between text-[10px] text-[#A0A0AA]">
               <span className="flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-[#16815D] inline-block" /> Locally Used ({donorLocalBurn})
               </span>
@@ -264,50 +264,50 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
         </div>
 
         {/* Scenario 2: AFTER PROPOSED REDISTRIBUTION */}
-        <div className="bg-white p-4 sm:p-5 rounded-lg border border-[#E5E5E8] space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-[#E5E5E8]">
-            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#080808]">
+        <div className="bg-[#171923] p-4 sm:p-5 rounded-lg border border-[#2D3142] space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-[#2D3142]">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
               Simulated Redistribution Outcome
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#16815D]/10 text-[#16815D] border border-[#16815D]/30">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#16815D]/20 text-[#5AA98C] border border-[#16815D]/40">
               Wastage Prevented
             </span>
           </div>
 
           <div className="space-y-3 text-xs font-sans">
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Transfer Quantity Dispatched:</span>
-              <span className="font-mono font-bold text-[#080808]">{simulatedQty} units</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Transfer Quantity Dispatched:</span>
+              <span className="font-mono font-bold text-white">{simulatedQty} units</span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Donor Remaining Stock:</span>
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Donor Remaining Stock:</span>
               <span
                 className={`font-mono font-bold ${
-                  isDonorSafetyBreached ? 'text-[#BB232B]' : 'text-[#16815D]'
+                  isDonorSafetyBreached ? 'text-[#FF6B72]' : 'text-[#5AA98C]'
                 }`}
               >
                 {simulatedDonorPostStock} units (Reserve: {donorSafetyStock})
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Recipient Stock Post-Transfer:</span>
-              <span className="font-mono font-bold text-[#080808]">
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Recipient Stock Post-Transfer:</span>
+              <span className="font-mono font-bold text-white">
                 {simulatedRecipientPostStock} units (Absorbs 100%)
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-1 border-b border-[#E5E5E8]/60">
-              <span className="text-[#737373]">Wastage Saved:</span>
-              <span className="font-mono font-bold text-[#16815D]">
+            <div className="flex justify-between items-center py-1 border-b border-[#2D3142]">
+              <span className="text-[#A0A0AA]">Wastage Saved:</span>
+              <span className="font-mono font-bold text-[#5AA98C]">
                 {simulatedWastageSavedUnits} units (${simulatedWastageSavedValue.toFixed(2)})
               </span>
             </div>
 
             <div className="flex justify-between items-center py-1">
-              <span className="text-[#737373]">Wastage Reduction Efficiency:</span>
-              <span className="font-mono font-bold text-[#16815D] text-sm">
+              <span className="text-[#A0A0AA]">Wastage Reduction Efficiency:</span>
+              <span className="font-mono font-bold text-[#5AA98C] text-sm">
                 {simulatedReductionPercent}% Avoided
               </span>
             </div>
@@ -315,11 +315,11 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
 
           {/* Visual Bar representation */}
           <div className="space-y-1.5 pt-2">
-            <div className="flex justify-between text-[11px] font-sans text-[#737373]">
+            <div className="flex justify-between text-[11px] font-sans text-[#A0A0AA]">
               <span>Inventory Fate Post-FEFO</span>
-              <span className="text-[#16815D] font-semibold">{simulatedReductionPercent}% Preserved</span>
+              <span className="text-[#5AA98C] font-semibold">{simulatedReductionPercent}% Preserved</span>
             </div>
-            <div className="h-3 w-full bg-[#E5E5E8] rounded-full overflow-hidden flex">
+            <div className="h-3 w-full bg-[#222431] rounded-full overflow-hidden flex">
               <div
                 style={{ width: `${Math.round((donorLocalBurn / donorPreStock) * 100)}%` }}
                 className="bg-[#16815D] h-full"
@@ -336,7 +336,7 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
                 title="Remaining Waste"
               />
             </div>
-            <div className="flex justify-between text-[10px] text-[#737373]">
+            <div className="flex justify-between text-[10px] text-[#A0A0AA]">
               <span className="flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-[#16815D] inline-block" /> Local ({donorLocalBurn})
               </span>
@@ -352,7 +352,7 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
       </div>
 
       {/* Simulator Action Row */}
-      <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#737373] font-sans border-t border-[#E5E5E8]">
+      <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#A0A0AA] font-sans border-t border-[#2D3142]">
         <div>
           <em>Notice: Simulation model operates in sandboxed memory and does not mutate real database records until confirmed.</em>
         </div>
@@ -361,13 +361,13 @@ export const WastageSimulator: React.FC<WastageSimulatorProps> = ({
           type="button"
           disabled={isDonorSafetyBreached || simulatedQty <= 0}
           onClick={() => onLaunchConfirmation(currentRec, simulatedQty)}
-          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-sans font-medium text-xs transition-colors cursor-pointer shadow-xs ${
+          className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg font-sans font-medium text-xs transition-colors cursor-pointer shadow-sm ${
             isDonorSafetyBreached || simulatedQty <= 0
-              ? 'bg-[#E5E5E8] text-[#737373] cursor-not-allowed'
+              ? 'bg-[#222431] text-[#A0A0AA] border border-[#2D3142] cursor-not-allowed'
               : 'bg-[#2C3480] text-white hover:bg-[#232a6b]'
           }`}
         >
-          <ShieldCheck className="w-4 h-4 text-[#16815D]" />
+          <ShieldCheck className="w-4 h-4 text-[#5AA98C]" />
           <span>Proceed with Simulated Allocation ({simulatedQty} units)</span>
         </button>
       </div>

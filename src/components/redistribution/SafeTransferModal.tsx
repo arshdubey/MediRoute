@@ -110,13 +110,13 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
 
         {/* Medicine Selector */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#737373] mb-1.5 font-medium">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
             Medicine to Transfer
           </label>
           <select
             value={medicineId}
             onChange={(e) => setMedicineId(e.target.value)}
-            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#E5E5E8] rounded bg-[#F5F5F7] font-medium text-[#080808] focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
+            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-medium text-white focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
           >
             {medicines.map((m) => (
               <option key={m.id} value={m.id}>
@@ -129,13 +129,13 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
         {/* Donor & Recipient Clinics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-[#737373] mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Donor Facility (Source)
             </label>
             <select
               value={donorClinicId}
               onChange={(e) => setDonorClinicId(e.target.value)}
-              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#E5E5E8] rounded bg-[#F5F5F7] font-medium text-[#080808] focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-medium text-white focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
             >
               {clinics.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -144,22 +144,22 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
               ))}
             </select>
             {donorStock && (
-              <p className="text-[11px] font-mono text-[#737373] mt-1.5">
-                Stock: <strong className="text-[#080808]">{donorStock.currentStock}</strong> | Safety Min:{' '}
+              <p className="text-[11px] font-mono text-[#A0A0AA] mt-1.5">
+                Stock: <strong className="text-white">{donorStock.currentStock}</strong> | Safety Min:{' '}
                 {donorStock.minSafetyStock} | Safe Surplus:{' '}
-                <strong className="text-[#16815D]">{donorMaxAllowed}</strong>
+                <strong className="text-[#5AA98C]">{donorMaxAllowed}</strong>
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-[#737373] mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Recipient Facility (Destination)
             </label>
             <select
               value={recipientClinicId}
               onChange={(e) => setRecipientClinicId(e.target.value)}
-              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#E5E5E8] rounded bg-[#F5F5F7] font-medium text-[#080808] focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-medium text-white focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] cursor-pointer"
             >
               {clinics.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -168,8 +168,8 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
               ))}
             </select>
             {recipientStock && (
-              <p className="text-[11px] font-mono text-[#737373] mt-1.5">
-                Current: <strong className="text-[#080808]">{recipientStock.currentStock}</strong> | Safety Min:{' '}
+              <p className="text-[11px] font-mono text-[#A0A0AA] mt-1.5">
+                Current: <strong className="text-white">{recipientStock.currentStock}</strong> | Safety Min:{' '}
                 {recipientStock.minSafetyStock}
               </p>
             )}
@@ -179,14 +179,14 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
         {/* Quantity & Max Surplus Pill */}
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <label className="text-xs font-mono uppercase tracking-wider text-[#737373] font-medium">
+            <label className="text-xs font-mono uppercase tracking-wider text-[#A0A0AA] font-medium">
               Transfer Quantity ({selectedMed?.unit || 'units'})
             </label>
             {donorStock && (
               <button
                 type="button"
                 onClick={() => setQuantity(donorMaxAllowed)}
-                className="text-xs font-medium text-[#2C3480] hover:underline cursor-pointer transition-colors"
+                className="text-xs font-medium text-[#A4AADE] hover:text-white hover:underline cursor-pointer transition-colors"
               >
                 Set to Max Safe Surplus ({donorMaxAllowed})
               </button>
@@ -198,7 +198,7 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
             max={donorStock?.currentStock || 500}
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
-            className="w-full px-3 py-2 text-sm border border-[#E5E5E8] rounded bg-[#F5F5F7] font-mono font-bold text-[#080808] focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480]"
+            className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480]"
             required
           />
         </div>
@@ -207,65 +207,65 @@ export const SafeTransferModal: React.FC<SafeTransferModalProps> = ({
         <div
           className={`p-3.5 rounded-lg border flex items-start gap-3 text-xs ${
             safetyStatus.isValid
-              ? 'bg-[#16815D]/5 border-[#16815D]/20 text-[#16815D]'
-              : 'bg-[#BB232B]/5 border-[#BB232B]/20 text-[#BB232B]'
+              ? 'bg-[#16815D]/20 border-[#16815D]/40 text-[#5AA98C]'
+              : 'bg-[#BB232B]/20 border-[#BB232B]/40 text-[#FF6B72]'
           }`}
         >
           {safetyStatus.isValid ? (
-            <CheckCircle2 className="w-4 h-4 text-[#16815D] flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-4 h-4 text-[#5AA98C] flex-shrink-0 mt-0.5" />
           ) : (
-            <ShieldAlert className="w-4 h-4 text-[#BB232B] flex-shrink-0 mt-0.5" />
+            <ShieldAlert className="w-4 h-4 text-[#FF6B72] flex-shrink-0 mt-0.5" />
           )}
           <div>
             <span className="font-bold block font-sans">
               {safetyStatus.isValid ? 'Safety Protocol Compliant' : 'Safety Constraint Blocked'}
             </span>
-            <p className="mt-0.5 leading-relaxed font-sans text-[#737373]">{safetyStatus.message}</p>
+            <p className="mt-0.5 leading-relaxed font-sans text-[#A0A0AA]">{safetyStatus.message}</p>
           </div>
         </div>
 
         {/* Route Details */}
-        <div className="bg-[#F5F5F7] p-3 rounded-lg border border-[#E5E5E8] flex items-center justify-between text-xs text-[#737373] font-sans">
+        <div className="bg-[#222431] p-3 rounded-lg border border-[#2D3142] flex items-center justify-between text-xs text-[#A0A0AA] font-sans">
           <div className="flex items-center gap-2">
-            <Truck className="w-3.5 h-3.5 text-[#737373]" />
+            <Truck className="w-3.5 h-3.5 text-[#A0A0AA]" />
             <span>Transit Distance:</span>
-            <strong className="text-[#080808] font-mono">{route.distanceKm} km</strong>
+            <strong className="text-white font-mono">{route.distanceKm} km</strong>
           </div>
           <div>
             <span>Estimated Courier Time:</span>{' '}
-            <strong className="text-[#080808] font-mono">~{route.transitMinutes} mins</strong>
+            <strong className="text-white font-mono">~{route.transitMinutes} mins</strong>
           </div>
         </div>
 
         {/* Notes */}
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-[#737373] mb-1.5 font-medium">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
             Clinical Transfer Notes / Justification
           </label>
           <input
             type="text"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#E5E5E8] rounded bg-[#F5F5F7] text-[#080808] focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] font-sans"
+            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] text-white focus:outline-none focus:border-[#2C3480] focus:ring-1 focus:ring-[#2C3480] font-sans"
             placeholder="e.g. Alleviating emergency deficit, preventing stockout"
           />
         </div>
 
-        <div className="pt-3 border-t border-[#E5E5E8] flex items-center justify-end gap-2.5">
+        <div className="pt-3 border-t border-[#2D3142] flex items-center justify-end gap-2.5">
           <button
             type="button"
             onClick={onClose}
-            className="px-3.5 py-2 text-xs font-medium text-[#737373] hover:text-[#080808] bg-white hover:bg-[#F5F5F7] border border-[#E5E5E8] rounded transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
+            className="px-3.5 py-2 text-xs font-medium text-[#A0A0AA] hover:text-white bg-[#222431] hover:bg-[#2D3142] border border-[#2D3142] rounded-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={!safetyStatus.isValid}
-            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] ${
+            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] ${
               safetyStatus.isValid
-                ? 'bg-[#2C3480] hover:bg-[#232a6b] text-white shadow-xs'
-                : 'bg-[#E5E5E8] text-[#737373] cursor-not-allowed opacity-60'
+                ? 'bg-[#2C3480] hover:bg-[#232a6b] text-white shadow-md border border-[#3D479E]'
+                : 'bg-[#222431] text-[#A0A0AA] border border-[#2D3142] cursor-not-allowed opacity-50'
             }`}
           >
             <Truck className="w-3.5 h-3.5" />

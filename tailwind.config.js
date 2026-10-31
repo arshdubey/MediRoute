@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Luxury Healthcare Brand Palette (Reference: Velara Cobalt / Black / White)
+        // Luxury Dark Command Center Palette
+        deepBlack: '#080808',
         cobalt: {
           DEFAULT: '#2C3480',
           50: '#F0F1FA',
@@ -22,6 +23,22 @@ export default {
           900: '#10132E',
           950: '#0A0C1C',
         },
+        charcoal: {
+          DEFAULT: '#171923',
+          50: '#2D3042',
+          100: '#252837',
+          200: '#1F212E',
+          DEFAULT: '#171923',
+          card: '#171923',
+          surface: '#171923',
+        },
+        darkSlate: {
+          DEFAULT: '#222431',
+          card: '#222431',
+          border: '#2D3142',
+        },
+        darkBorder: '#2D3142',
+        mutedGrey: '#A0A0AA',
         obsidian: {
           DEFAULT: '#080808',
           50: '#F5F5F7',
@@ -143,15 +160,15 @@ export default {
           600: '#94610D',
         },
         // Functional Semantic Mapping
-        workspace: '#F5F5F7',
+        workspace: '#080808',
         sidebar: '#2C3480',
         primary: '#2C3480',
-        secondary: '#737373',
-        border: '#E5E5E8',
+        secondary: '#A0A0AA',
+        border: '#2D3142',
         action: '#2C3480',
         alert: '#BB232B',
         success: '#16815D',
-        card: '#FFFFFF',
+        card: '#171923',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Newsreader', 'DM Serif Display', 'Georgia', 'serif'],

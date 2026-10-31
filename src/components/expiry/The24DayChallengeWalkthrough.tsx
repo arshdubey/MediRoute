@@ -70,10 +70,10 @@ export const The24DayChallengeWalkthrough: React.FC<The24DayChallengeWalkthrough
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10 relative z-10">
         <div className="space-y-0.5">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-[#BB232B] bg-[#BB232B]/20 px-2 py-0.5 rounded-lg border border-[#BB232B]/40 font-bold">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[#FF6B72] bg-[#BB232B]/20 px-2 py-0.5 rounded-lg border border-[#BB232B]/40 font-bold">
               Interactive Showcase Scenario
             </span>
-            <span className="text-xs font-mono text-[#737373]">
+            <span className="text-xs font-mono text-[#A0A0AA]">
               Step {currentStep} of {totalSteps}
             </span>
           </div>
@@ -95,7 +95,7 @@ export const The24DayChallengeWalkthrough: React.FC<The24DayChallengeWalkthrough
           <button
             type="button"
             onClick={onClose}
-            className="p-1 text-[#737373] hover:text-white rounded-lg transition-colors cursor-pointer"
+            className="p-1 text-[#A0A0AA] hover:text-white rounded-lg transition-colors cursor-pointer"
             title="Close walkthrough"
           >
             <X className="w-4 h-4" />
@@ -111,7 +111,7 @@ export const The24DayChallengeWalkthrough: React.FC<The24DayChallengeWalkthrough
             className="bg-[#2C3480] h-full transition-all duration-300"
           />
         </div>
-        <div className="flex justify-between text-[10px] font-mono text-[#737373]">
+        <div className="flex justify-between text-[10px] font-mono text-[#A0A0AA]">
           <span>1. Discovery</span>
           <span>3. Deficit</span>
           <span>5. Refusals</span>

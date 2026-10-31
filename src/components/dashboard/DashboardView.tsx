@@ -221,75 +221,75 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
 
   return (
     <div className="space-y-6">
-      {/* 1. Luxury Editorial Opening Viewport (Cobalt & Pure White Harmony) */}
+      {/* 1. Luxury Editorial Opening Viewport (Cobalt & Obsidian Command Center) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Left Column: Expressive Editorial Command Heading */}
-        <div className="lg:col-span-7 bg-white rounded-xl p-5 sm:p-6 border border-[#E5E5E8] flex flex-col justify-between shadow-xs">
+        <div className="lg:col-span-7 bg-[#171923] rounded-xl p-5 sm:p-6 border border-[#2D3142] flex flex-col justify-between shadow-lg">
           <div className="space-y-3">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#BB232B] inline-block" />
-                <span className="text-[10px] font-mono font-semibold tracking-widest uppercase text-[#737373]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#BB232B] inline-block shadow-[0_0_8px_#BB232B]" />
+                <span className="text-[10px] font-mono font-semibold tracking-widest uppercase text-[#A0A0AA]">
                   REGIONAL HEALTH / OPERATIONS 01
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#080808] font-serif leading-[1.08]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white font-serif leading-[1.08]">
                 Medicine, where it matters.
               </h1>
             </div>
 
-            <p className="text-[#737373] text-xs sm:text-sm leading-relaxed font-sans max-w-xl">
+            <p className="text-[#A0A0AA] text-xs sm:text-sm leading-relaxed font-sans max-w-xl">
               Continuous inventory monitoring across 5 interconnected regional facilities. Deterministic redistribution matching algorithms calculate safe surplus allocations while strictly preserving donor safety reserves.
             </p>
 
             {/* Subordinate Context & Network Metadata Line */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#737373] font-mono pt-1">
-              <span className="flex items-center gap-1.5 text-[#080808] font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#16815D]" />
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#A0A0AA] font-mono pt-1">
+              <span className="flex items-center gap-1.5 text-white font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16815D] shadow-[0_0_8px_#16815D]" />
                 <span>5 Connected Facilities</span>
               </span>
-              <span className="text-[#E5E5E8]">•</span>
+              <span className="text-[#2D3142]">•</span>
               <span>Surplus-to-Deficit Routing</span>
-              <span className="text-[#E5E5E8]">•</span>
-              <span className="text-[#737373]">Dynamic Safety Buffer</span>
+              <span className="text-[#2D3142]">•</span>
+              <span className="text-[#A0A0AA]">Dynamic Safety Buffer</span>
             </div>
           </div>
 
-          <div className="pt-4 mt-3 border-t border-[#E5E5E8] flex flex-wrap items-center justify-between gap-3">
+          <div className="pt-4 mt-3 border-t border-[#2D3142] flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2.5">
               <button
                 onClick={() => onNavigateToTab('redistribution')}
-                className="bg-[#2C3480] hover:bg-[#232A6B] text-[#FFFFFF] font-semibold text-xs px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-2 active:scale-95 shadow-sm border border-[#2C3480] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
+                className="bg-[#2C3480] hover:bg-[#232A6B] text-white font-semibold text-xs px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-2 active:scale-95 shadow-md border border-[#3D479E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
               >
-                <span className="text-[#FFFFFF]">Redistribution Proposals</span>
-                <span className="bg-[#BB232B] text-[#FFFFFF] px-1.5 py-0.5 rounded-md text-[10px] font-mono font-bold tabular-nums">
+                <span className="text-white">Redistribution Proposals</span>
+                <span className="bg-[#BB232B] text-white px-1.5 py-0.5 rounded-md text-[10px] font-mono font-bold tabular-nums">
                   {activeRecommendations.length}
                 </span>
               </button>
 
               <button
                 onClick={() => onNavigateToTab('forecasting')}
-                className="bg-[#FFFFFF] hover:bg-[#F5F5F7] text-[#080808] font-semibold text-xs px-3.5 py-2.5 rounded-lg border border-[#E5E5E8] hover:border-[#2C3480] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
+                className="bg-[#222431] hover:bg-[#2D3142] text-white font-semibold text-xs px-3.5 py-2.5 rounded-lg border border-[#2D3142] hover:border-[#2C3480] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
               >
                 Depletion Runways
               </button>
 
               <button
                 onClick={() => onNavigateToTab('expiry')}
-                className="bg-[#FFFFFF] hover:bg-[#F5F5F7] text-[#080808] font-semibold text-xs px-3.5 py-2.5 rounded-lg border border-[#E5E5E8] hover:border-[#2C3480] transition-all cursor-pointer flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
+                className="bg-[#222431] hover:bg-[#2D3142] text-white font-semibold text-xs px-3.5 py-2.5 rounded-lg border border-[#2D3142] hover:border-[#2C3480] transition-all cursor-pointer flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480] focus-visible:ring-offset-2"
               >
-                <CalendarClock className="w-3.5 h-3.5 text-[#2C3480]" />
+                <CalendarClock className="w-3.5 h-3.5 text-[#6872C4]" />
                 <span>Expiry Intelligence</span>
                 {fefoRecommendations.length > 0 && (
-                  <span className="bg-[#2C3480] text-white px-1.5 py-0.2 rounded-md text-[10px] font-mono">
+                  <span className="bg-[#2C3480] text-white px-1.5 py-0.5 rounded-md text-[10px] font-mono">
                     {fefoRecommendations.length}
                   </span>
                 )}
               </button>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 text-xs text-[#16815D] font-medium px-2.5 py-1.5 bg-[#F0F8F5] border border-[#BFDFD2] rounded-lg">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#16815D] flex-shrink-0" />
+            <div className="inline-flex items-center gap-1.5 text-xs text-[#5AA98C] font-medium px-2.5 py-1.5 bg-[#16815D]/20 border border-[#16815D]/50 rounded-lg">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#5AA98C] flex-shrink-0" />
               <span className="font-sans text-[11px] font-semibold">Zero-Breach Enforced</span>
             </div>
           </div>
@@ -313,31 +313,31 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
       </div>
 
       {/* 2. Editorial Metric Composition (Dominant Critical Metric + Supporting Matrix) */}
-      <div className="bg-white rounded-xl border border-[#E5E5E8] shadow-xs overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#E5E5E8]">
+      <div className="bg-[#171923] rounded-xl border border-[#2D3142] shadow-lg overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#2D3142]">
           {/* Dominant Critical-Shortage Metric */}
-          <div className="lg:col-span-4 p-5 sm:p-6 flex flex-col justify-between bg-[#FFFFFF]">
+          <div className="lg:col-span-4 p-5 sm:p-6 flex flex-col justify-between bg-[#171923]">
             <Reveal delay={100} duration={400} direction="up" className="flex flex-col justify-between h-full">
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373]">
+                  <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA]">
                     NETWORK SHORTAGES
                   </span>
                   <span
                     className={`inline-flex items-center gap-1 text-[10px] font-mono font-bold px-2 py-0.5 rounded-md ${
                       stats.criticalCount > 0
-                        ? 'bg-[#FDF3F3] text-[#BB232B] border border-[#F5CACD]'
-                        : 'bg-[#F0F8F5] text-[#16815D] border border-[#BFDFD2]'
+                        ? 'bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/50'
+                        : 'bg-[#16815D]/20 text-[#5AA98C] border border-[#16815D]/50'
                     }`}
                   >
                     {stats.criticalCount > 0 ? (
                       <>
-                        <AlertTriangle className="w-3 h-3 text-[#BB232B]" />
+                        <AlertTriangle className="w-3 h-3 text-[#FF6B72]" />
                         <span>Action Required</span>
                       </>
                     ) : (
                       <>
-                        <ShieldCheck className="w-3 h-3 text-[#16815D]" />
+                        <ShieldCheck className="w-3 h-3 text-[#5AA98C]" />
                         <span>All Safe</span>
                       </>
                     )}
@@ -347,15 +347,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                 <div className="my-2">
                   <div
                     className={`text-4xl sm:text-5xl font-normal font-serif tracking-tight tabular-nums ${
-                      stats.criticalCount > 0 ? 'text-[#BB232B]' : 'text-[#080808]'
+                      stats.criticalCount > 0 ? 'text-[#FF6B72]' : 'text-white'
                     }`}
                   >
                     <AnimatedNumber value={stats.criticalCount} />
                   </div>
-                  <h3 className="text-sm font-semibold text-[#080808] mt-1 font-sans">
+                  <h3 className="text-sm font-semibold text-white mt-1 font-sans">
                     Critical Deficit Instances
                   </h3>
-                  <p className="text-xs text-[#737373] mt-1 leading-relaxed font-sans max-w-sm">
+                  <p className="text-xs text-[#A0A0AA] mt-1 leading-relaxed font-sans max-w-sm">
                     {stats.criticalCount > 0
                       ? 'Essential formulary lines holding ≤ 2.5 days of clinical coverage at current burn rate.'
                       : 'All 5 network facilities currently maintain stock above required minimum reserve buffers.'}
@@ -363,17 +363,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#E5E5E8] mt-3">
+              <div className="pt-3 border-t border-[#2D3142] mt-3">
                 {stats.criticalCount > 0 ? (
                   <button
                     onClick={() => onNavigateToTab('redistribution')}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#BB232B] hover:text-[#A01B22] hover:underline cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BB232B] rounded"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF6B72] hover:text-white hover:underline cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BB232B] rounded"
                   >
                     <span>Initiate algorithmic redistribution</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 ) : (
-                  <span className="text-xs text-[#16815D] font-medium flex items-center gap-1">
+                  <span className="text-xs text-[#5AA98C] font-medium flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5" /> Network inventory balanced
                   </span>
                 )}
@@ -382,27 +382,27 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
           </div>
 
           {/* Supporting Metrics 2x2 Grid (Consistent Internal Padding, Aligned Rows) */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E5E8]">
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[#2D3142]">
             {/* Supporting 1: Available Donor Surplus */}
-            <div className="p-5 sm:p-6 flex flex-col justify-between bg-white">
+            <div className="p-5 sm:p-6 flex flex-col justify-between bg-[#171923]">
               <Reveal delay={150} duration={400} direction="up" className="flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373]">
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA]">
                       DONOR SURPLUS
                     </span>
-                    <span className="text-[10px] font-mono text-[#2C3480] bg-[#F0F1FA] px-1.5 py-0.5 rounded border border-[#C7CAEB] font-bold">
+                    <span className="text-[10px] font-mono text-[#A4AADE] bg-[#2C3480]/30 px-1.5 py-0.5 rounded border border-[#2C3480]/60 font-bold">
                       Eligible Donors
                     </span>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#2C3480] tabular-nums my-1">
+                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#A4AADE] tabular-nums my-1">
                     <AnimatedNumber value={stats.surplusCount} />
                   </div>
-                  <p className="text-xs text-[#737373] font-sans leading-relaxed">
+                  <p className="text-xs text-[#A0A0AA] font-sans leading-relaxed">
                     Surplus stock batches safely transferable above donor safety reserves.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#E5E5E8] mt-3 text-xs text-[#16815D] font-medium flex items-center justify-between">
+                <div className="pt-3 border-t border-[#2D3142] mt-3 text-xs text-[#5AA98C] font-medium flex items-center justify-between">
                   <span>Donor Buffer</span>
                   <span>Preserved</span>
                 </div>
@@ -410,77 +410,77 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
             </div>
 
             {/* Supporting 2: Clinical Formulary */}
-            <div className="p-5 sm:p-6 flex flex-col justify-between bg-white">
+            <div className="p-5 sm:p-6 flex flex-col justify-between bg-[#171923]">
               <Reveal delay={200} duration={400} direction="up" className="flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373]">
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA]">
                       FORMULARY LINES
                     </span>
-                    <span className="text-[10px] font-mono text-[#737373] bg-[#F5F5F7] px-1.5 py-0.5 rounded border border-[#E5E5E8]">
+                    <span className="text-[10px] font-mono text-[#A0A0AA] bg-[#222431] px-1.5 py-0.5 rounded border border-[#2D3142]">
                       5 Facilities
                     </span>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#080808] tabular-nums my-1">
+                  <div className="text-2xl sm:text-3xl font-normal font-serif text-white tabular-nums my-1">
                     <AnimatedNumber value={medicines.length} />
                   </div>
-                  <p className="text-xs text-[#737373] font-sans leading-relaxed">
+                  <p className="text-xs text-[#A0A0AA] font-sans leading-relaxed">
                     {filteredStock.length} monitored inventory batches with linear consumption tracking.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#E5E5E8] mt-3 text-xs text-[#737373] flex items-center justify-between font-sans">
+                <div className="pt-3 border-t border-[#2D3142] mt-3 text-xs text-[#A0A0AA] flex items-center justify-between font-sans">
                   <span>Consumption Burn</span>
-                  <span className="text-[#080808] font-medium">Active</span>
+                  <span className="text-white font-medium">Active</span>
                 </div>
               </Reveal>
             </div>
 
             {/* Supporting 3: Low-Stock Watchlist */}
-            <div className="p-5 sm:p-6 flex flex-col justify-between sm:border-t border-[#E5E5E8] bg-white">
+            <div className="p-5 sm:p-6 flex flex-col justify-between sm:border-t border-[#2D3142] bg-[#171923]">
               <Reveal delay={250} duration={400} direction="up" className="flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373]">
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA]">
                       LOW-STOCK WATCHLIST
                     </span>
-                    <span className="text-[10px] font-mono text-[#B87A14] bg-[#FEF9EF] px-1.5 py-0.5 rounded border border-[#FAE0AD] font-bold">
+                    <span className="text-[10px] font-mono text-[#F5CB7A] bg-[#B87A14]/20 px-1.5 py-0.5 rounded border border-[#B87A14]/50 font-bold">
                       2.5d – 5.0d
                     </span>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#080808] tabular-nums my-1">
+                  <div className="text-2xl sm:text-3xl font-normal font-serif text-white tabular-nums my-1">
                     <AnimatedNumber value={stats.lowStockCount} />
                   </div>
-                  <p className="text-xs text-[#737373] font-sans leading-relaxed">
+                  <p className="text-xs text-[#A0A0AA] font-sans leading-relaxed">
                     Medicines approaching safety reserve threshold; under proactive observation.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#E5E5E8] mt-3 text-xs text-[#737373] flex items-center justify-between font-sans">
+                <div className="pt-3 border-t border-[#2D3142] mt-3 text-xs text-[#A0A0AA] flex items-center justify-between font-sans">
                   <span>Threshold Runway</span>
-                  <span className="text-[#B87A14] font-medium font-mono">Attention</span>
+                  <span className="text-[#F5CB7A] font-medium font-mono">Attention</span>
                 </div>
               </Reveal>
             </div>
 
             {/* Supporting 4: Verified Dispatches */}
-            <div className="p-5 sm:p-6 flex flex-col justify-between sm:border-t border-[#E5E5E8] bg-white">
+            <div className="p-5 sm:p-6 flex flex-col justify-between sm:border-t border-[#2D3142] bg-[#171923]">
               <Reveal delay={300} duration={400} direction="up" className="flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373]">
+                    <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA]">
                       VERIFIED DISPATCHES
                     </span>
-                    <span className="text-[10px] font-mono text-[#16815D] bg-[#F0F8F5] px-1.5 py-0.5 rounded border border-[#BFDFD2] font-bold">
+                    <span className="text-[10px] font-mono text-[#5AA98C] bg-[#16815D]/20 px-1.5 py-0.5 rounded border border-[#16815D]/50 font-bold">
                       Audit Trail
                     </span>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#16815D] tabular-nums my-1">
+                  <div className="text-2xl sm:text-3xl font-normal font-serif text-[#5AA98C] tabular-nums my-1">
                     <AnimatedNumber value={impactMetrics.completedTransfersCount} />
                   </div>
-                  <p className="text-xs text-[#737373] font-sans leading-relaxed">
+                  <p className="text-xs text-[#A0A0AA] font-sans leading-relaxed">
                     Logged transfers in immutable session audit manifest ledger.
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#E5E5E8] mt-3 text-xs text-[#16815D] font-medium flex items-center gap-1 font-sans">
+                <div className="pt-3 border-t border-[#2D3142] mt-3 text-xs text-[#5AA98C] font-medium flex items-center gap-1 font-sans">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>{impactMetrics.networkSafetyComplianceRate}% Safety Compliance</span>
                 </div>
@@ -597,21 +597,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
       {/* 4. Main Data Visualizations: Regional Inventory Balance & Stock Health Donut */}
       <div ref={chartsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Facility Inventory Classification Breakdown Bar Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl p-5 sm:p-6 border border-concrete shadow-print-sm flex flex-col justify-between">
+        <div className="lg:col-span-2 bg-[#171923] rounded-xl p-5 sm:p-6 border border-[#2D3142] shadow-lg flex flex-col justify-between">
           <Reveal direction="up" delay={100} duration={450}>
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-concrete">
+            <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#2D3142]">
               <div>
-                <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-muted block mb-0.5">
+                <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA] block mb-0.5">
                   FACILITY BALANCES
                 </span>
-                <h2 className="font-serif text-base text-ink font-normal">
+                <h2 className="font-serif text-base text-white font-normal">
                   Regional Facility Inventory Balance
                 </h2>
-                <p className="text-xs text-graphite font-sans">
+                <p className="text-xs text-[#A0A0AA] font-sans">
                   Stock classification ratios across the 5 connected healthcare facilities
                 </p>
               </div>
-              <span className="text-xs font-mono text-graphite bg-paper px-2 py-0.5 rounded border border-concrete">
+              <span className="text-xs font-mono text-white bg-[#222431] px-2 py-0.5 rounded border border-[#2D3142]">
                 5 Facilities
               </span>
             </div>
@@ -631,12 +631,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                 >
                   <XAxis
                     dataKey="clinicCode"
-                    tick={{ fontSize: 11, fill: '#77766F', fontFamily: 'JetBrains Mono, monospace' }}
+                    tick={{ fontSize: 11, fill: '#A0A0AA', fontFamily: 'JetBrains Mono, monospace' }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fontSize: 11, fill: '#77766F', fontFamily: 'JetBrains Mono, monospace' }}
+                    tick={{ fontSize: 11, fill: '#A0A0AA', fontFamily: 'JetBrains Mono, monospace' }}
                     axisLine={false}
                     tickLine={false}
                   />
@@ -645,8 +645,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                       if (!active || !payload || !payload.length) return null;
                       const clinic = clinics.find((c) => c.code === label);
                       return (
-                        <div className="bg-[#080808] border border-[#2C3480]/50 rounded-lg p-3 text-[#FFFFFF] text-xs font-sans shadow-xl space-y-1.5 min-w-[180px]">
-                          <div className="font-semibold text-sm border-b border-[#2C3480]/40 pb-1 font-serif text-[#FFFFFF]">
+                        <div className="bg-[#080808] border border-[#2C3480]/50 rounded-lg p-3 text-white text-xs font-sans shadow-xl space-y-1.5 min-w-[180px]">
+                          <div className="font-semibold text-sm border-b border-[#2C3480]/40 pb-1 font-serif text-white">
                             {clinic?.code} — {clinic?.name}
                           </div>
                           <div className="space-y-1 pt-0.5">
@@ -656,7 +656,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                                   <span className="w-2 h-2 rounded-xs" style={{ backgroundColor: entry.color }} />
                                   <span className="text-[#C7CAEB]">{entry.name}:</span>
                                 </div>
-                                <span className="font-mono font-bold text-[#FFFFFF]">{entry.value} lines</span>
+                                <span className="font-mono font-bold text-white">{entry.value} lines</span>
                               </div>
                             ))}
                           </div>
@@ -664,7 +664,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                       );
                     }}
                   />
-                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px', fontFamily: 'Inter, sans-serif' }} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px', fontFamily: 'Inter, sans-serif', color: '#A0A0AA' }} />
                   <Bar dataKey="Optimal" stackId="a" fill="#16815D" isAnimationActive={areChartsInView} animationDuration={600} animationEasing="ease-out" />
                   <Bar dataKey="Surplus" stackId="a" fill="#2C3480" isAnimationActive={areChartsInView} animationDuration={600} animationEasing="ease-out" />
                   <Bar dataKey="LowStock" stackId="a" fill="#B87A14" isAnimationActive={areChartsInView} animationDuration={600} animationEasing="ease-out" />
@@ -676,19 +676,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
         </div>
 
         {/* Network Stock Classification Ratio Donut */}
-        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#E5E5E8] shadow-xs flex flex-col justify-between">
+        <div className="bg-[#171923] rounded-xl p-5 sm:p-6 border border-[#2D3142] shadow-lg flex flex-col justify-between">
           <Reveal direction="up" delay={120} duration={450}>
             <div>
               <div className="flex items-center justify-between mb-0.5">
-                <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#737373] block">
+                <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#A0A0AA] block">
                   NETWORK RATIO
                 </span>
-                <span className="text-xs font-mono text-[#080808]">Total Lines</span>
+                <span className="text-xs font-mono text-[#A0A0AA]">Total Lines</span>
               </div>
-              <h2 className="font-serif text-base text-[#080808] font-normal">
+              <h2 className="font-serif text-base text-white font-normal">
                 Stock Health Breakdown
               </h2>
-              <p className="text-xs text-[#737373] font-sans mb-1">Proportion across all active batches</p>
+              <p className="text-xs text-[#A0A0AA] font-sans mb-1">Proportion across all active batches</p>
             </div>
 
             <div className="h-44 w-full relative">
@@ -707,7 +707,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                     animationEasing="ease-out"
                   >
                     {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} stroke="#FFFFFF" strokeWidth={1} />
+                      <Cell key={`cell-${index}`} fill={entry.color} stroke="#171923" strokeWidth={2} />
                     ))}
                   </Pie>
                   <Tooltip
@@ -717,8 +717,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                       const total = filteredStock.length || 1;
                       const pct = Math.round(((Number(data.value) || 0) / total) * 100);
                       return (
-                        <div className="bg-[#080808] border border-[#2C3480]/50 rounded-lg p-2.5 text-[#FFFFFF] text-xs font-sans shadow-xl min-w-[130px]">
-                          <div className="flex items-center gap-1.5 mb-1 font-semibold text-[#FFFFFF]">
+                        <div className="bg-[#080808] border border-[#2C3480]/50 rounded-lg p-2.5 text-white text-xs font-sans shadow-xl min-w-[130px]">
+                          <div className="flex items-center gap-1.5 mb-1 font-semibold text-white">
                             <span className="w-2 h-2 rounded-xs" style={{ backgroundColor: data.payload.color }} />
                             <span>{data.name}</span>
                           </div>
@@ -732,17 +732,17 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="text-2xl font-normal font-serif text-ink">{filteredStock.length}</span>
-                <span className="text-[9px] font-mono font-medium text-muted uppercase tracking-wider">Batches</span>
+                <span className="text-2xl font-normal font-serif text-white">{filteredStock.length}</span>
+                <span className="text-[9px] font-mono font-medium text-[#A0A0AA] uppercase tracking-wider">Batches</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-concrete">
+            <div className="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-[#2D3142]">
               {pieData.map((d) => (
                 <div key={d.name} className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-xs flex-shrink-0" style={{ backgroundColor: d.color }} />
-                  <span className="text-graphite text-[11px] truncate font-sans">{d.name}</span>
-                  <span className="font-mono font-bold text-ink ml-auto text-[11px] tabular-nums">{d.value}</span>
+                  <span className="text-[#A0A0AA] text-[11px] truncate font-sans">{d.name}</span>
+                  <span className="font-mono font-bold text-white ml-auto text-[11px] tabular-nums">{d.value}</span>
                 </div>
               ))}
             </div>
@@ -753,23 +753,23 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
       {/* 5. Shortage Deficit Triage Queue & Recent Inter-Clinic Transfers */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Active Deficit Triage Queue */}
-        <div className="bg-white rounded-xl p-4 sm:p-5 border border-concrete shadow-print-sm flex flex-col justify-between">
+        <div className="bg-[#171923] rounded-xl p-4 sm:p-5 border border-[#2D3142] shadow-lg flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-concrete">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#2D3142]">
               <div className="flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-vermilion" />
+                <AlertTriangle className="w-4 h-4 text-[#FF6B72]" />
                 <div>
-                  <h3 className="font-serif text-base text-ink font-normal">
+                  <h3 className="font-serif text-base text-white font-normal">
                     Active Deficit Triage Queue
                   </h3>
-                  <p className="text-[11px] text-muted font-sans">
+                  <p className="text-[11px] text-[#A0A0AA] font-sans">
                     Essential formulary lines holding critical coverage (Action Required)
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => onNavigateToTab('redistribution')}
-                className="text-xs font-medium text-ink hover:underline flex items-center gap-1 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ink rounded"
+                className="text-xs font-medium text-white hover:text-[#A4AADE] flex items-center gap-1 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white rounded"
               >
                 <span>All Proposals</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -778,28 +778,28 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
 
             <div className="space-y-2.5">
               {criticalItems.length === 0 ? (
-                <div className="py-7 px-4 bg-paper rounded border border-concrete text-center space-y-2.5">
-                  <div className="w-9 h-9 rounded-full bg-clinicalGreen/10 border border-clinicalGreen/30 text-clinicalGreen flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-5 h-5 text-clinicalGreen" />
+                <div className="py-7 px-4 bg-[#222431] rounded-lg border border-[#2D3142] text-center space-y-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#16815D]/20 border border-[#16815D]/40 text-[#5AA98C] flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-5 h-5 text-[#5AA98C]" />
                   </div>
                   <div>
-                    <h4 className="font-serif text-sm font-normal text-ink">
+                    <h4 className="font-serif text-sm font-normal text-white">
                       Regional Reserve Invariants Maintained
                     </h4>
-                    <p className="text-xs text-graphite max-w-sm mx-auto mt-0.5 font-sans leading-relaxed">
+                    <p className="text-xs text-[#A0A0AA] max-w-sm mx-auto mt-0.5 font-sans leading-relaxed">
                       Zero active shortages detected across monitored formulary lines. All regional facilities are currently operating at or above minimum safety thresholds.
                     </p>
                   </div>
                   <div className="pt-1.5 flex items-center justify-center gap-2">
                     <button
                       onClick={() => onNavigateToTab('inventory')}
-                      className="text-[11px] font-medium text-ink bg-white px-3 py-1 rounded border border-concrete hover:bg-concrete/40 transition-colors cursor-pointer"
+                      className="text-[11px] font-medium text-white bg-[#171923] px-3 py-1 rounded border border-[#2D3142] hover:bg-[#2D3142] transition-colors cursor-pointer"
                     >
                       Inspect Inventory
                     </button>
                     <button
                       onClick={() => onNavigateToTab('forecasting')}
-                      className="text-[11px] font-medium text-graphite bg-white px-3 py-1 rounded border border-concrete hover:text-ink hover:bg-concrete/40 transition-colors cursor-pointer"
+                      className="text-[11px] font-medium text-[#A0A0AA] bg-[#171923] px-3 py-1 rounded border border-[#2D3142] hover:text-white hover:bg-[#2D3142] transition-colors cursor-pointer"
                     >
                       View Depletion Runways
                     </button>
@@ -816,25 +816,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                     tabIndex={0}
                     className={`p-3 rounded-lg border transition-all flex items-center justify-between gap-3 ${
                       hoveredDeficitItem?.id === item.id
-                        ? 'border-[#BB232B] bg-white ring-1 ring-[#BB232B]/30 shadow-xs'
-                        : 'border-[#E5E5E8] bg-[#F5F5F7] hover:bg-white hover:border-[#080808]'
+                        ? 'border-[#BB232B] bg-[#222431] ring-1 ring-[#BB232B]/50 shadow-md'
+                        : 'border-[#2D3142] bg-[#222431] hover:bg-[#262837] hover:border-[#2C3480]'
                     }`}
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="font-serif text-sm text-[#080808] truncate font-medium">
+                        <span className="font-serif text-sm text-white truncate font-medium">
                           {item.medicine.name}
                         </span>
                         <StatusBadge status={item.calc.status} size="sm" />
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-[#737373] mt-1 flex-wrap font-sans">
-                        <span className="font-semibold text-[#080808]">{item.clinic.name}</span>
-                        <span className="text-[#E5E5E8]">•</span>
+                      <div className="flex items-center gap-2 text-xs text-[#A0A0AA] mt-1 flex-wrap font-sans">
+                        <span className="font-semibold text-white">{item.clinic.name}</span>
+                        <span className="text-[#2D3142]">•</span>
                         <span>
-                          On-Hand: <strong className="text-[#080808] font-mono">{item.currentStock}</strong> / {item.minSafetyStock} min
+                          On-Hand: <strong className="text-white font-mono">{item.currentStock}</strong> / {item.minSafetyStock} min
                         </span>
-                        <span className="text-[#E5E5E8]">•</span>
-                        <span className="text-[#BB232B] font-bold font-mono">
+                        <span className="text-[#2D3142]">•</span>
+                        <span className="text-[#FF6B72] font-bold font-mono">
                           {item.calc.daysUntilStockout}d coverage
                         </span>
                       </div>
@@ -842,7 +842,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
 
                     <button
                       onClick={() => openMatchDonorModal(item)}
-                      className="flex-shrink-0 bg-white hover:bg-[#2C3480] hover:text-white text-[#080808] border border-[#E5E5E8] hover:border-[#2C3480] text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
+                      className="flex-shrink-0 bg-[#171923] hover:bg-[#2C3480] text-white border border-[#2D3142] hover:border-[#2C3480] text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
                       title={`Match safe donor facility for ${item.medicine.name}`}
                     >
                       <Sparkles className="w-3.5 h-3.5 text-[#BB232B]" />
@@ -856,23 +856,23 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
         </div>
 
         {/* Recent Confirmed Inter-Clinic Transfers */}
-        <div className="bg-white rounded-xl p-5 border border-[#E5E5E8] shadow-xs flex flex-col justify-between">
+        <div className="bg-[#171923] rounded-xl p-5 border border-[#2D3142] shadow-lg flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#E5E5E8]">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#2D3142]">
               <div className="flex items-center gap-2">
-                <Truck className="w-4 h-4 text-[#080808]" />
+                <Truck className="w-4 h-4 text-white" />
                 <div>
-                  <h3 className="font-serif text-base text-[#080808] font-normal">
+                  <h3 className="font-serif text-base text-white font-normal">
                     Recent Inter-Clinic Dispatches
                   </h3>
-                  <p className="text-[11px] text-[#737373] font-sans">
+                  <p className="text-[11px] text-[#A0A0AA] font-sans">
                     Confirmed transfers logged in immutable audit trail
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => onNavigateToTab('analytics')}
-                className="text-xs font-semibold text-[#2C3480] hover:underline flex items-center gap-1 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2C3480] rounded"
+                className="text-xs font-semibold text-[#A4AADE] hover:underline flex items-center gap-1 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2C3480] rounded"
               >
                 <span>Audit Manifest</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -881,22 +881,22 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
 
             <div className="space-y-2.5">
               {transfers.length === 0 ? (
-                <div className="py-7 px-4 bg-[#F5F5F7] rounded-lg border border-dashed border-[#E5E5E8] text-center space-y-2.5">
-                  <div className="w-9 h-9 rounded-full bg-white border border-[#E5E5E8] text-[#737373] flex items-center justify-center mx-auto">
-                    <Truck className="w-4 h-4 text-[#737373]" />
+                <div className="py-7 px-4 bg-[#222431] rounded-lg border border-dashed border-[#2D3142] text-center space-y-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#171923] border border-[#2D3142] text-[#A0A0AA] flex items-center justify-center mx-auto">
+                    <Truck className="w-4 h-4 text-[#A0A0AA]" />
                   </div>
                   <div>
-                    <h4 className="font-serif text-sm font-normal text-[#080808]">
+                    <h4 className="font-serif text-sm font-normal text-white">
                       No Transfers Dispatched in Session
                     </h4>
-                    <p className="text-xs text-[#737373] max-w-sm mx-auto mt-0.5 font-sans leading-relaxed">
+                    <p className="text-xs text-[#A0A0AA] max-w-sm mx-auto mt-0.5 font-sans leading-relaxed">
                       Confirm an algorithmic redistribution proposal or launch the case study to log a verified dispatch into the session ledger.
                     </p>
                   </div>
                   <div className="pt-1.5 flex items-center justify-center gap-2">
                     <button
                       onClick={runGuidedDemoScenario}
-                      className="text-[11px] font-medium text-white bg-[#2C3480] hover:bg-[#232A6B] px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+                      className="text-[11px] font-medium text-white bg-[#2C3480] hover:bg-[#232A6B] px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-md border border-[#3D479E]"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-white" />
                       <span>Run Case Study Scenario</span>
@@ -912,38 +912,38 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigateToTab })
                   return (
                     <div
                       key={t.id}
-                      className="p-3 rounded-lg border border-[#E5E5E8] bg-[#F5F5F7] hover:bg-white hover:border-[#080808] transition-colors flex items-start justify-between gap-3"
+                      className="p-3 rounded-lg border border-[#2D3142] bg-[#222431] hover:bg-[#262837] hover:border-[#2C3480] transition-colors flex items-start justify-between gap-3"
                     >
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="font-serif text-sm text-[#080808] font-medium">
+                          <span className="font-serif text-sm text-white font-medium">
                             {t.quantity} {med?.unit || 'units'} of {med?.name}
                           </span>
                           {t.isEmergency && (
-                            <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-vermilion/10 text-vermilion border border-vermilion/30 uppercase tracking-wider">
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/50 uppercase tracking-wider">
                               Crisis Surge
                             </span>
                           )}
                         </div>
 
-                        <div className="text-xs text-graphite mt-1 flex flex-wrap items-center gap-1.5 font-sans">
-                          <span className="font-bold text-ink bg-white px-1.5 py-0.5 rounded text-[10px] font-mono border border-concrete">
+                        <div className="text-xs text-[#A0A0AA] mt-1 flex flex-wrap items-center gap-1.5 font-sans">
+                          <span className="font-bold text-white bg-[#171923] px-1.5 py-0.5 rounded text-[10px] font-mono border border-[#2D3142]">
                             {donor?.code || t.donorClinicId}
                           </span>
-                          <ArrowRight className="w-3 h-3 text-muted" />
-                          <span className="font-bold text-ink bg-white px-1.5 py-0.5 rounded text-[10px] font-mono border border-concrete">
+                          <ArrowRight className="w-3 h-3 text-[#A0A0AA]" />
+                          <span className="font-bold text-white bg-[#171923] px-1.5 py-0.5 rounded text-[10px] font-mono border border-[#2D3142]">
                             {recipient?.code || t.recipientClinicId}
                           </span>
-                          <span className="text-concrete">•</span>
-                          <span className="text-graphite text-xs font-mono">
+                          <span className="text-[#2D3142]">•</span>
+                          <span className="text-[#A0A0AA] text-xs font-mono">
                             {t.distanceKm} km (~{t.estimatedTransitMinutes}m courier)
                           </span>
                         </div>
 
-                        <p className="text-[11px] text-muted mt-0.5 italic line-clamp-1">{t.notes}</p>
+                        <p className="text-[11px] text-[#A0A0AA] mt-0.5 italic line-clamp-1">{t.notes}</p>
                       </div>
 
-                      <span className="text-[10px] font-mono text-muted flex-shrink-0 bg-white px-1.5 py-0.5 rounded border border-concrete">
+                      <span className="text-[10px] font-mono text-[#A0A0AA] flex-shrink-0 bg-[#171923] px-1.5 py-0.5 rounded border border-[#2D3142]">
                         {new Date(t.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>

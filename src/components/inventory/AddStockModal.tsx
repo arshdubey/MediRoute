@@ -72,13 +72,13 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Facility / Clinic
             </label>
             <select
               value={clinicId}
               onChange={(e) => setClinicId(e.target.value)}
-              className="w-full px-3 py-2 text-xs sm:text-sm border border-concrete rounded bg-paper font-medium text-ink focus:outline-none focus:border-ink cursor-pointer"
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-medium text-white focus:outline-none focus:border-[#2C3480] cursor-pointer"
             >
               {clinics.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -89,13 +89,13 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Pharmaceutical Agent
             </label>
             <select
               value={medicineId}
               onChange={(e) => setMedicineId(e.target.value)}
-              className="w-full px-3 py-2 text-xs sm:text-sm border border-concrete rounded bg-paper font-medium text-ink focus:outline-none focus:border-ink cursor-pointer"
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-medium text-white focus:outline-none focus:border-[#2C3480] cursor-pointer"
             >
               {medicines.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -108,7 +108,7 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Current Stock ({selectedMed?.unit || 'units'})
             </label>
             <input
@@ -116,13 +116,13 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
               min="0"
               value={currentStock}
               onChange={(e) => setCurrentStock(parseInt(e.target.value) || 0)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Min Safety Stock
             </label>
             <input
@@ -130,13 +130,13 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
               min="0"
               value={minSafetyStock}
               onChange={(e) => setMinSafetyStock(parseInt(e.target.value) || 0)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Max Capacity
             </label>
             <input
@@ -144,7 +144,7 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
               min="0"
               value={maxCapacity}
               onChange={(e) => setMaxCapacity(parseInt(e.target.value) || 0)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
@@ -152,7 +152,7 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Avg Daily Burn
             </label>
             <input
@@ -161,49 +161,49 @@ export const AddStockModal: React.FC<AddStockModalProps> = ({ isOpen, onClose })
               step="0.5"
               value={avgDailyConsumption}
               onChange={(e) => setAvgDailyConsumption(parseFloat(e.target.value) || 1)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Batch Lot Number
             </label>
             <input
               type="text"
               value={batchNumber}
               onChange={(e) => setBatchNumber(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Expiry Date
             </label>
             <input
               type="date"
               value={expiryDate}
               onChange={(e) => setExpiryDate(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-medium text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-medium text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
         </div>
 
-        <div className="pt-3 border-t border-concrete flex items-center justify-end gap-2.5">
+        <div className="pt-3 border-t border-[#2D3142] flex items-center justify-end gap-2.5">
           <button
             type="button"
             onClick={onClose}
-            className="px-3.5 py-2 text-xs font-medium text-graphite hover:text-ink bg-white hover:bg-concrete/40 border border-concrete rounded transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1"
+            className="px-3.5 py-2 text-xs font-medium text-[#A0A0AA] hover:text-white bg-[#222431] hover:bg-[#2D3142] border border-[#2D3142] rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 text-xs font-medium text-white bg-ink hover:bg-black rounded transition-colors cursor-pointer shadow-xs active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1"
+            className="px-4 py-2 text-xs font-medium text-white bg-[#2C3480] hover:bg-[#232A6B] rounded-lg transition-colors cursor-pointer shadow-md active:scale-95 border border-[#3D479E]"
           >
             Save Stock Record
           </button>

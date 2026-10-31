@@ -43,31 +43,31 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#080808]/70 backdrop-blur-xs transition-opacity duration-200"
+        className="fixed inset-0 bg-[#080808]/85 backdrop-blur-sm transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
       <div className="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
         <div
-          className={`relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all sm:my-8 w-full ${maxWidthClass} border border-[#E5E5E8]`}
+          className={`relative transform overflow-hidden rounded-xl bg-[#171923] text-left shadow-2xl transition-all sm:my-8 w-full ${maxWidthClass} border border-[#2D3142]`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#E5E5E8] px-6 py-4 bg-white">
+          <div className="flex items-center justify-between border-b border-[#2D3142] px-6 py-4 bg-[#171923]">
             <div>
-              <h3 id="modal-title" className="text-xl font-serif text-[#080808] tracking-tight">
+              <h3 id="modal-title" className="text-xl font-serif text-white tracking-tight">
                 {title}
               </h3>
               {subtitle && (
-                <p className="text-xs text-[#737373] mt-1 tracking-tight font-sans">
+                <p className="text-xs text-[#A0A0AA] mt-1 tracking-tight font-sans">
                   {subtitle}
                 </p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="rounded p-1.5 text-[#737373] hover:bg-[#F5F5F7] hover:text-[#080808] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
+              className="rounded p-1.5 text-[#A0A0AA] hover:bg-[#222431] hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3480]"
               aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
@@ -75,7 +75,7 @@ export const Modal: React.FC<ModalProps> = ({
           </div>
 
           {/* Body */}
-          <div className="px-6 py-5 max-h-[82vh] overflow-y-auto">{children}</div>
+          <div className="px-6 py-5 max-h-[82vh] overflow-y-auto bg-[#171923] text-white">{children}</div>
         </div>
       </div>
     </div>

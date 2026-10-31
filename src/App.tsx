@@ -32,7 +32,7 @@ const MainLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] flex flex-col text-[#080808] font-sans selection:bg-[#2C3480] selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#080808] flex flex-col text-white font-sans selection:bg-[#2C3480] selection:text-white relative overflow-x-hidden">
       {/* Scroll Progress Indicator at Top of Viewport */}
       <ScrollProgress />
 

@@ -85,37 +85,37 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
     switch (tier) {
       case 'EXPIRED':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#BB232B]/20 text-[#BB232B] border border-[#BB232B]/30">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/40">
             EXPIRED ({Math.abs(days)}d ago)
           </span>
         );
       case 'CRITICAL':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#BB232B]/10 text-[#BB232B] border border-[#BB232B]/30">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/40">
             CRITICAL ({days}d left)
           </span>
         );
       case 'HIGH':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#B87A14]/10 text-[#B87A14] border border-[#B87A14]/30">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#D98A1A]/20 text-[#F5A623] border border-[#D98A1A]/40">
             HIGH ({days}d left)
           </span>
         );
       case 'MODERATE':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#2C3480]/10 text-[#2C3480] border border-[#2C3480]/30">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#2C3480]/30 text-blue-300 border border-[#2C3480]">
             MODERATE ({days}d left)
           </span>
         );
       case 'WATCH':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8]">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#222431] text-[#A0A0AA] border border-[#2D3142]">
             WATCH ({days}d left)
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#16815D]/10 text-[#16815D] border border-[#16815D]/30">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#16815D]/20 text-[#5AA98C] border border-[#16815D]/40">
             NORMAL ({days}d)
           </span>
         );
@@ -123,20 +123,20 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg border border-[#E5E5E8] p-5 shadow-xs space-y-4">
+    <div className="bg-[#171923] rounded-lg border border-[#2D3142] p-5 shadow-sm space-y-4">
       {/* Header and Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-[#E5E5E8]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-[#2D3142]">
         <div>
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-[#2C3480]" />
-            <h3 className="font-serif text-lg text-[#080808] font-normal tracking-tight">
+            <Clock className="w-4 h-4 text-blue-400" />
+            <h3 className="font-serif text-lg text-white font-normal tracking-tight">
               Chronological Expiry Timeline
             </h3>
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded-lg bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8]">
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-lg bg-[#222431] text-[#A0A0AA] border border-[#2D3142]">
               {filteredBatches.length} {filteredBatches.length === 1 ? 'batch' : 'batches'}
             </span>
           </div>
-          <p className="text-xs text-[#737373] mt-0.5 font-sans">
+          <p className="text-xs text-[#A0A0AA] mt-0.5 font-sans">
             Sorted by earliest expiration. Select any batch to inspect consumption feasibility.
           </p>
         </div>
@@ -144,14 +144,14 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
         {/* Filter Toolbar */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Horizon Filters */}
-          <div className="flex items-center bg-[#F5F5F7] rounded-lg p-0.5 border border-[#E5E5E8] text-xs">
+          <div className="flex items-center bg-[#222431] rounded-lg p-0.5 border border-[#2D3142] text-xs">
             <button
               type="button"
               onClick={() => setFilter('ALL')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === 'ALL'
-                  ? 'bg-[#2C3480] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#080808]'
+                  ? 'bg-[#2C3480] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-white'
               }`}
             >
               All
@@ -161,8 +161,8 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
               onClick={() => setFilter('7D')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === '7D'
-                  ? 'bg-[#BB232B] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#BB232B]'
+                  ? 'bg-[#BB232B] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-[#FF6B72]'
               }`}
             >
               &le; 7 Days
@@ -172,8 +172,8 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
               onClick={() => setFilter('30D')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === '30D'
-                  ? 'bg-[#B87A14] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#B87A14]'
+                  ? 'bg-[#D98A1A] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-[#F5A623]'
               }`}
             >
               &le; 30 Days
@@ -183,8 +183,8 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
               onClick={() => setFilter('60D')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === '60D'
-                  ? 'bg-[#2C3480] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#080808]'
+                  ? 'bg-[#2C3480] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-white'
               }`}
             >
               &le; 60 Days
@@ -194,8 +194,8 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
               onClick={() => setFilter('90D')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === '90D'
-                  ? 'bg-[#080808] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#080808]'
+                  ? 'bg-[#080808] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-white'
               }`}
             >
               &le; 90 Days
@@ -205,8 +205,8 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
               onClick={() => setFilter('EXPIRED')}
               className={`px-2.5 py-1 rounded-lg transition-colors font-sans text-xs ${
                 filter === 'EXPIRED'
-                  ? 'bg-[#BB232B] text-white font-medium shadow-xs'
-                  : 'text-[#737373] hover:text-[#BB232B]'
+                  ? 'bg-[#BB232B] text-white font-medium shadow-sm'
+                  : 'text-[#A0A0AA] hover:text-[#FF6B72]'
               }`}
             >
               Expired
@@ -218,7 +218,7 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
             value={clinicFilter}
             aria-label="Filter by Facility"
             onChange={(e) => setClinicFilter(e.target.value)}
-            className="text-xs bg-[#F5F5F7] border border-[#E5E5E8] rounded-lg px-2.5 py-1 text-[#080808] font-sans focus:outline-none focus:ring-1 focus:ring-[#2C3480]"
+            className="text-xs bg-[#222431] border border-[#2D3142] rounded-lg px-2.5 py-1 text-white font-sans focus:outline-none focus:ring-1 focus:ring-[#2C3480]"
           >
             <option value="ALL">All Facilities</option>
             {clinics.map((c) => (
@@ -233,7 +233,7 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
       {/* Visual Timeline Lane */}
       <div className="space-y-2 max-h-[440px] overflow-y-auto pr-1">
         {filteredBatches.length === 0 ? (
-          <div className="text-center py-8 text-xs text-[#737373] font-sans">
+          <div className="text-center py-8 text-xs text-[#A0A0AA] font-sans">
             No batches match the selected expiry horizon and facility filters.
           </div>
         ) : (
@@ -246,68 +246,68 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
                 onClick={() => onSelectBatch && onSelectBatch(batch)}
                 className={`p-3.5 rounded-lg border transition-all cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-3 ${
                   isSelected
-                    ? 'bg-[#F5F5F7] border-[#2C3480] ring-1 ring-[#2C3480]'
-                    : 'bg-white border-[#E5E5E8] hover:border-[#2C3480]/50 hover:bg-[#F5F5F7]'
+                    ? 'bg-[#222431] border-[#2C3480] ring-1 ring-[#2C3480]'
+                    : 'bg-[#171923] border-[#2D3142] hover:border-[#2C3480]/60 hover:bg-[#222431]'
                 }`}
               >
                 {/* Left Column: Medicine & Identification */}
                 <div className="space-y-1 min-w-0 md:w-1/3">
                   <div className="flex items-center gap-2">
-                    <span className="font-sans font-semibold text-xs text-[#080808] truncate">
+                    <span className="font-sans font-semibold text-xs text-white truncate">
                       {batch.medicineName}
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#F5F5F7] text-[#737373] border border-[#E5E5E8]">
+                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#222431] text-[#A0A0AA] border border-[#2D3142]">
                       {batch.category}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-[#737373] font-mono text-[11px]">
-                    <span className="text-[#080808] font-semibold">#{batch.batchNumber}</span>
+                  <div className="flex items-center gap-2 text-xs text-[#A0A0AA] font-mono text-[11px]">
+                    <span className="text-white font-semibold">#{batch.batchNumber}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1 font-sans text-xs">
-                      <Building2 className="w-3 h-3 text-[#2C3480]" />
+                      <Building2 className="w-3 h-3 text-blue-400" />
                       {batch.clinicCode} ({batch.clinicName})
                     </span>
                   </div>
                 </div>
 
                 {/* Middle Column: Stock, Safety Reserve & Local Feasibility */}
-                <div className="grid grid-cols-3 gap-2 text-xs md:w-5/12 bg-[#F5F5F7] p-2 rounded-lg border border-[#E5E5E8]">
+                <div className="grid grid-cols-3 gap-2 text-xs md:w-5/12 bg-[#222431] p-2 rounded-lg border border-[#2D3142]">
                   <div>
-                    <span className="text-[10px] text-[#737373] uppercase tracking-wider block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] uppercase tracking-wider block font-sans">
                       Current Stock
                     </span>
-                    <span className="font-mono font-bold text-xs text-[#080808]">
+                    <span className="font-mono font-bold text-xs text-white">
                       {batch.currentStock} units
                     </span>
-                    <span className="text-[10px] text-[#737373] block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] block font-sans">
                       Min reserve: {batch.minSafetyStock}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] text-[#737373] uppercase tracking-wider block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] uppercase tracking-wider block font-sans">
                       Local Burn
                     </span>
-                    <span className="font-mono text-xs text-[#080808]">
+                    <span className="font-mono text-xs text-white">
                       {batch.avgDailyConsumption}/day
                     </span>
-                    <span className="text-[10px] text-[#737373] block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] block font-sans">
                       Uses ~{batch.localProjectedConsumption}d
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[10px] text-[#737373] uppercase tracking-wider block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] uppercase tracking-wider block font-sans">
                       At-Risk Surplus
                     </span>
                     <span
                       className={`font-mono font-bold text-xs ${
-                        batch.projectedUnusedStock > 0 ? 'text-[#BB232B]' : 'text-[#16815D]'
+                        batch.projectedUnusedStock > 0 ? 'text-[#FF6B72]' : 'text-[#5AA98C]'
                       }`}
                     >
                       {batch.projectedUnusedStock > 0 ? `${batch.projectedUnusedStock} units` : '0 units'}
                     </span>
-                    <span className="text-[10px] text-[#737373] block font-sans">
+                    <span className="text-[10px] text-[#A0A0AA] block font-sans">
                       {batch.projectedUnusedStock > 0 ? `~$${batch.potentialWastageExposure.toFixed(0)} loss` : 'Fully utilized'}
                     </span>
                   </div>
@@ -316,7 +316,7 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
                 {/* Right Column: Expiry Date, Tier Badge & Action */}
                 <div className="flex items-center justify-between md:justify-end gap-3 md:w-1/4">
                   <div className="text-right">
-                    <div className="text-xs font-mono font-medium text-[#080808]">
+                    <div className="text-xs font-mono font-medium text-white">
                       {batch.expiryDate}
                     </div>
                     <div className="mt-0.5">{getTierBadge(batch.riskTier, batch.daysToExpiry)}</div>
@@ -324,7 +324,7 @@ export const ExpiryTimeline: React.FC<ExpiryTimelineProps> = ({
 
                   <button
                     type="button"
-                    className="p-1.5 rounded-lg text-[#737373] hover:text-[#080808] hover:bg-[#E5E5E8] transition-colors"
+                    className="p-1.5 rounded-lg text-[#A0A0AA] hover:text-white hover:bg-[#2D3142] transition-colors"
                     title="Inspect Batch"
                   >
                     <ArrowRight className="w-4 h-4" />

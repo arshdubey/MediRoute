@@ -90,9 +90,9 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
         )}
 
         {/* Live Status Calculation Preview */}
-        <div className="bg-paper p-3.5 rounded border border-concrete flex items-center justify-between">
+        <div className="bg-[#222431] p-3.5 rounded-lg border border-[#2D3142] flex items-center justify-between">
           <div>
-            <span className="block text-[11px] font-mono uppercase tracking-wider text-muted font-bold">
+            <span className="block text-[11px] font-mono uppercase tracking-wider text-[#A0A0AA] font-bold">
               Projected Status
             </span>
             <div className="mt-1">
@@ -100,15 +100,15 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
             </div>
           </div>
           <div className="text-right font-mono text-xs">
-            <span className="text-[10px] text-muted block font-sans">Projected Runway</span>
-            <strong className="text-sm font-bold text-ink tabular-nums">{previewDaysLeft} days</strong>
+            <span className="text-[10px] text-[#A0A0AA] block font-sans">Projected Runway</span>
+            <strong className="text-sm font-bold text-white tabular-nums">{previewDaysLeft} days</strong>
           </div>
         </div>
 
         {/* Form Fields */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Current On-Hand
             </label>
             <input
@@ -116,13 +116,13 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
               min="0"
               value={currentStock}
               onChange={(e) => setCurrentStock(parseInt(e.target.value) || 0)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Safety Minimum
             </label>
             <input
@@ -130,7 +130,7 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
               min="0"
               value={minSafetyStock}
               onChange={(e) => setMinSafetyStock(parseInt(e.target.value) || 0)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
@@ -138,7 +138,7 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Avg Daily Burn
             </label>
             <input
@@ -147,49 +147,49 @@ export const StockEditModal: React.FC<StockEditModalProps> = ({
               step="0.5"
               value={avgDailyConsumption}
               onChange={(e) => setAvgDailyConsumption(parseFloat(e.target.value) || 1)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
               Batch Lot Code
             </label>
             <input
               type="text"
               value={batchNumber}
               onChange={(e) => setBatchNumber(e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-bold text-ink focus:outline-none focus:border-ink"
+              className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-bold text-white focus:outline-none focus:border-[#2C3480]"
               required
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-graphite mb-1.5 font-medium">
+          <label className="block text-xs font-mono uppercase tracking-wider text-[#A0A0AA] mb-1.5 font-medium">
             Batch Expiration Date
           </label>
           <input
             type="date"
             value={expiryDate}
             onChange={(e) => setExpiryDate(e.target.value)}
-            className="w-full px-3 py-2 text-sm border border-concrete rounded bg-paper font-mono font-medium text-ink focus:outline-none focus:border-ink"
+            className="w-full px-3 py-2 text-sm border border-[#2D3142] rounded-lg bg-[#222431] font-mono font-medium text-white focus:outline-none focus:border-[#2C3480]"
             required
           />
         </div>
 
-        <div className="pt-3 border-t border-concrete flex items-center justify-end gap-2.5">
+        <div className="pt-3 border-t border-[#2D3142] flex items-center justify-end gap-2.5">
           <button
             type="button"
             onClick={onClose}
-            className="px-3.5 py-2 text-xs font-medium text-graphite hover:text-ink bg-white hover:bg-concrete/40 border border-concrete rounded transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1"
+            className="px-3.5 py-2 text-xs font-medium text-[#A0A0AA] hover:text-white bg-[#222431] hover:bg-[#2D3142] border border-[#2D3142] rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 text-xs font-medium text-white bg-ink hover:bg-black rounded transition-colors cursor-pointer shadow-xs active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1"
+            className="px-4 py-2 text-xs font-medium text-white bg-[#2C3480] hover:bg-[#232A6B] rounded-lg transition-colors cursor-pointer shadow-md active:scale-95 border border-[#3D479E]"
           >
             Update Inventory Record
           </button>

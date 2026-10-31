@@ -207,20 +207,20 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
   }, [effectiveDonorId, effectiveRecipientId, nodePositions]);
 
   return (
-    <div className="bg-white rounded-xl border border-[#E5E5E8] p-4 sm:p-5 flex flex-col justify-between h-full shadow-xs">
+    <div className="bg-[#171923] rounded-xl border border-[#2D3142] p-4 sm:p-5 flex flex-col justify-between h-full shadow-lg">
       {/* Topology Header */}
-      <div className="flex items-center justify-between pb-2.5 border-b border-[#E5E5E8]">
+      <div className="flex items-center justify-between pb-2.5 border-b border-[#2D3142]">
         <div className="flex items-center gap-2">
           <div>
-            <span className="text-[10px] font-mono font-semibold tracking-widest text-[#737373] uppercase">
+            <span className="text-[10px] font-mono font-semibold tracking-widest text-[#A0A0AA] uppercase">
               REGIONAL TOPOLOGY
             </span>
-            <h3 className="text-sm font-serif font-normal text-[#080808]">
+            <h3 className="text-sm font-serif font-normal text-white">
               5-Facility Network Corridor
             </h3>
           </div>
           {selectedClinicId && selectedClinicId !== 'ALL' && (
-            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono bg-[#F5F5F7] px-2 py-0.5 rounded-md border border-[#E5E5E8] text-[#080808] font-semibold">
+            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono bg-[#222431] px-2 py-0.5 rounded-md border border-[#2D3142] text-white font-semibold">
               <span>Filtered: {clinics.find((c) => c.id === selectedClinicId)?.code || selectedClinicId}</span>
               {onSelectClinic && (
                 <button
@@ -236,27 +236,27 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
         </div>
 
         {activeEmergency ? (
-          <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded bg-[#2D0D0F] text-[#BB232B] border border-[#BB232B]/40 flex items-center gap-1.5 shadow-xs">
+          <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/50 flex items-center gap-1.5 shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#BB232B] animate-pulse" />
             <span>Crisis Surge Corridor</span>
           </span>
         ) : corridorMode === 'FOCUSED' ? (
-          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#FDF3F3] text-[#BB232B] border border-[#F5CACD] flex items-center gap-1.5 shadow-xs">
+          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/50 flex items-center gap-1.5 shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#BB232B] animate-pulse" />
             <span>Focused Triage Corridor</span>
           </span>
         ) : corridorMode === 'PROPOSED' ? (
-          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#F0F1FA] text-[#2C3480] border border-[#C7CAEB] flex items-center gap-1.5 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2C3480]" />
+          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#2C3480]/30 text-[#A4AADE] border border-[#2C3480]/60 flex items-center gap-1.5 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#6872C4]" />
             <span>Proposed Corridor (Pending)</span>
           </span>
         ) : corridorMode === 'CONFIRMED' ? (
-          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#F0F8F5] text-[#16815D] border border-[#BFDFD2] flex items-center gap-1.5 shadow-xs">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#16815D]" />
+          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#16815D]/20 text-[#5AA98C] border border-[#16815D]/50 flex items-center gap-1.5 shadow-xs">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#5AA98C]" />
             <span>Confirmed Dispatch Corridor</span>
           </span>
         ) : (
-          <span className="text-[11px] font-mono text-[#16815D] bg-[#F0F8F5] border border-[#BFDFD2] px-2.5 py-1 rounded flex items-center gap-1.5 font-semibold">
+          <span className="text-[11px] font-mono text-[#5AA98C] bg-[#16815D]/20 border border-[#16815D]/50 px-2.5 py-1 rounded flex items-center gap-1.5 font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#16815D]" />
             <span>Network Stable</span>
           </span>
@@ -305,7 +305,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                   y1={p1.y}
                   x2={p2.x}
                   y2={p2.y}
-                  stroke="#E5E5E8"
+                  stroke="#2D3142"
                   strokeWidth="1.25"
                   strokeLinecap="round"
                 />
@@ -319,7 +319,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
               <path
                 d={routeGeometry.pathD}
                 fill="none"
-                stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#2C3480' : '#BB232B'}
+                stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#4A56C4' : '#BB232B'}
                 strokeWidth={corridorMode === 'CONFIRMED' ? '2' : corridorMode === 'FOCUSED' ? '2.75' : '2.5'}
                 strokeLinecap="round"
                 className={corridorMode === 'PROPOSED' || corridorMode === 'FOCUSED' ? 'proposed-corridor-flow' : ''}
@@ -336,7 +336,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                 y1={routeGeometry.anchorY}
                 x2={routeGeometry.badgeX}
                 y2={routeGeometry.badgeY + (routeGeometry.badgeY < routeGeometry.anchorY ? 10 : -10)}
-                stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#2C3480' : '#BB232B'}
+                stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#4A56C4' : '#BB232B'}
                 strokeWidth="1"
                 strokeDasharray="2 2"
               />
@@ -345,7 +345,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                 cx={routeGeometry.anchorX}
                 cy={routeGeometry.anchorY}
                 r="3"
-                fill={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#2C3480' : '#BB232B'}
+                fill={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#4A56C4' : '#BB232B'}
               />
               {/* Opaque Badge Container */}
               <g transform={`translate(${routeGeometry.badgeX}, ${routeGeometry.badgeY})`}>
@@ -355,10 +355,10 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                   width="136"
                   height="20"
                   rx="4"
-                  fill={corridorMode === 'CONFIRMED' ? '#F0F8F5' : '#FFFFFF'}
-                  stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#2C3480' : '#BB232B'}
+                  fill="#171923"
+                  stroke={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#4A56C4' : '#BB232B'}
                   strokeWidth="1.25"
-                  filter="drop-shadow(0 2px 4px rgba(8, 8, 8, 0.08))"
+                  filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4))"
                 />
                 <text
                   x="0"
@@ -367,14 +367,14 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                   fontFamily="Inter, sans-serif"
                   fontSize="8"
                   fontWeight="600"
-                  fill="#080808"
+                  fill="#FFFFFF"
                 >
                   <tspan fontWeight="700" fontFamily="JetBrains Mono, monospace">
                     {activeRoute.distanceKm} km
                   </tspan>
-                  <tspan fill="#737373"> • </tspan>
+                  <tspan fill="#A0A0AA"> • </tspan>
                   <tspan
-                    fill={corridorMode === 'CONFIRMED' ? '#16815D' : corridorMode === 'PROPOSED' ? '#2C3480' : '#BB232B'}
+                    fill={corridorMode === 'CONFIRMED' ? '#5AA98C' : corridorMode === 'PROPOSED' ? '#A4AADE' : '#FF6B72'}
                     fontWeight="700"
                   >
                     {corridorMode === 'CONFIRMED'
@@ -406,24 +406,24 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
               const isSelected = effectiveSelectedClinicId === clinic.id;
               const isHovered = hoveredNodeId === clinic.id;
 
-              let nodeFill = '#FFFFFF';
-              let nodeStroke = '#E5E5E8';
-              let roleBadgeFill = '#F5F5F7';
-              let roleBadgeStroke = '#E5E5E8';
-              let roleBadgeText = '#737373';
+              let nodeFill = '#222431';
+              let nodeStroke = '#2D3142';
+              let roleBadgeFill = '#171923';
+              let roleBadgeStroke = '#2D3142';
+              let roleBadgeText = '#A0A0AA';
 
               if (isRecipient) {
-                nodeFill = '#FDF3F3';
+                nodeFill = '#2D0D0F';
                 nodeStroke = '#BB232B';
-                roleBadgeFill = '#FDF3F3';
-                roleBadgeStroke = '#F5CACD';
-                roleBadgeText = '#BB232B';
+                roleBadgeFill = '#2D0D0F';
+                roleBadgeStroke = '#BB232B';
+                roleBadgeText = '#FF6B72';
               } else if (isDonor) {
-                nodeFill = '#FFFFFF';
+                nodeFill = '#0A2B1D';
                 nodeStroke = '#16815D';
-                roleBadgeFill = '#F0F8F5';
-                roleBadgeStroke = '#BFDFD2';
-                roleBadgeText = '#16815D';
+                roleBadgeFill = '#0A2B1D';
+                roleBadgeStroke = '#16815D';
+                roleBadgeText = '#5AA98C';
               }
 
               return (
@@ -457,12 +457,12 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                       r={isSelected ? 23 : isHovered ? 21 : 18}
                       fill={
                         isSelected
-                          ? 'rgba(20, 37, 54, 0.16)'
+                          ? 'rgba(44, 52, 128, 0.4)'
                           : isRecipient
-                          ? 'rgba(231, 71, 50, 0.12)'
+                          ? 'rgba(187, 35, 43, 0.25)'
                           : isDonor
-                          ? 'rgba(29, 112, 85, 0.12)'
-                          : 'rgba(20, 37, 54, 0.08)'
+                          ? 'rgba(22, 129, 93, 0.25)'
+                          : 'rgba(44, 52, 128, 0.2)'
                       }
                       className="transition-all duration-150"
                     />
@@ -475,7 +475,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                       cy={pos.y}
                       r={17.5}
                       fill="none"
-                      stroke="#2C3480"
+                      stroke="#4A56C4"
                       strokeWidth={1.8}
                       strokeDasharray="3 2"
                     />
@@ -500,20 +500,20 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                     fontFamily="JetBrains Mono, monospace"
                     fontSize="8.5"
                     fontWeight="700"
-                    fill="#080808"
+                    fill="#FFFFFF"
                   >
                     {clinic.code}
                   </text>
 
-                  {/* Facility Name with Crisp White Readability Halo */}
+                  {/* Facility Name with Dark Background Halo */}
                   <rect
                     x={pos.x - 44}
                     y={pos.labelY - 9}
                     width="88"
                     height="13"
                     rx="2.5"
-                    fill="#FFFFFF"
-                    stroke="#E5E5E8"
+                    fill="#171923"
+                    stroke="#2D3142"
                     strokeWidth="0.5"
                   />
                   <text
@@ -523,7 +523,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                     fontFamily="Inter, sans-serif"
                     fontSize="9.5"
                     fontWeight="600"
-                    fill="#080808"
+                    fill="#FFFFFF"
                   >
                     {clinic.name.split(' ')[0]} {clinic.name.split(' ')[1] || ''}
                   </text>
@@ -558,33 +558,33 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
       </div>
 
       {/* Interactive Selection / Corridor Status Footer Strip (Compact, Mobile-Responsive) */}
-      <div className="pt-2.5 border-t border-[#E5E5E8] text-xs text-[#737373] font-sans">
+      <div className="pt-2.5 border-t border-[#2D3142] text-xs text-[#A0A0AA] font-sans">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
           <div className="flex items-center gap-1.5 min-w-0">
             {activeInspectedClinic && inspectedStatus ? (
-              <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#F5F5F7] p-2.5 rounded-lg border border-[#E5E5E8]">
+              <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#222431] p-2.5 rounded-lg border border-[#2D3142]">
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <span className="font-mono font-bold text-white bg-[#2C3480] px-1.5 py-0.5 rounded text-[10px]">
                       {activeInspectedClinic.code}
                     </span>
-                    <span className="font-semibold text-[#080808] text-xs truncate">
+                    <span className="font-semibold text-white text-xs truncate">
                       {activeInspectedClinic.name}
                     </span>
-                    <span className="text-[10px] text-[#737373] bg-white px-1.5 py-0.5 rounded border border-[#E5E5E8] hidden md:inline-block">
+                    <span className="text-[10px] text-[#A0A0AA] bg-[#171923] px-1.5 py-0.5 rounded border border-[#2D3142] hidden md:inline-block">
                       {activeInspectedClinic.type}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-[10px] text-[#737373] mt-1 font-mono flex-wrap">
+                  <div className="flex items-center gap-2 text-[10px] text-[#A0A0AA] mt-1 font-mono flex-wrap">
                     <span>{activeInspectedClinic.bedsCapacity} beds</span>
                     <span>•</span>
-                    <span className="text-[#080808] font-semibold">{inspectedStatus.totalUnits}u in stock</span>
+                    <span className="text-white font-semibold">{inspectedStatus.totalUnits}u in stock</span>
                     {inspectedStatus.criticalCount > 0 ? (
-                      <span className="text-[#BB232B] font-bold">
+                      <span className="text-[#FF6B72] font-bold">
                         • {inspectedStatus.criticalCount} deficits
                       </span>
                     ) : (
-                      <span className="text-[#16815D] font-medium">
+                      <span className="text-[#5AA98C] font-medium">
                         • Safe Reserve
                       </span>
                     )}
@@ -599,7 +599,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                       className={`text-[10px] font-sans font-semibold px-2 py-1 rounded-md border transition-colors cursor-pointer flex items-center gap-1 ${
                         selectedClinicId === activeInspectedClinic.id
                           ? 'bg-[#2C3480] text-white border-[#2C3480]'
-                          : 'bg-white text-[#080808] border-[#E5E5E8] hover:bg-[#E5E5E8]'
+                          : 'bg-[#171923] text-white border-[#2D3142] hover:bg-[#2D3142]'
                       }`}
                     >
                       <Filter className="w-3 h-3" />
@@ -611,7 +611,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
                       setSelectedNodeId(null);
                       setHoveredNodeId(null);
                     }}
-                    className="text-[#737373] hover:text-[#080808] p-1 rounded hover:bg-[#E5E5E8] cursor-pointer"
+                    className="text-[#A0A0AA] hover:text-white p-1 rounded hover:bg-[#171923] cursor-pointer"
                     title="Dismiss inspect card"
                   >
                     <X className="w-3.5 h-3.5" />
@@ -620,38 +620,38 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
               </div>
             ) : corridorMode === 'FOCUSED' && activeRoute && donorClinic && recipientClinic ? (
               <>
-                <Truck className="w-3.5 h-3.5 text-[#BB232B] flex-shrink-0" />
-                <span className="text-[11px] truncate">
-                  Triage: <strong className="text-[#080808] font-mono">{donorClinic.code}</strong> &rarr;{' '}
-                  <strong className="text-[#BB232B] font-mono">{recipientClinic.code}</strong>{' '}
-                  <span className="font-mono text-[#080808] font-semibold">({activeRoute.distanceKm} km)</span>
+                <Truck className="w-3.5 h-3.5 text-[#FF6B72] flex-shrink-0" />
+                <span className="text-[11px] truncate text-[#A0A0AA]">
+                  Triage: <strong className="text-white font-mono">{donorClinic.code}</strong> &rarr;{' '}
+                  <strong className="text-[#FF6B72] font-mono">{recipientClinic.code}</strong>{' '}
+                  <span className="font-mono text-white font-semibold">({activeRoute.distanceKm} km)</span>
                   {focusedCorridor?.medicineName ? ` • ${focusedCorridor.medicineName}` : ''}
                 </span>
               </>
             ) : corridorMode === 'PROPOSED' && activeRoute && donorClinic && recipientClinic ? (
               <>
-                <Truck className="w-3.5 h-3.5 text-[#2C3480] flex-shrink-0" />
-                <span className="text-[11px] truncate">
-                  Proposed: <strong className="text-[#080808] font-mono">{donorClinic.code}</strong> &rarr;{' '}
-                  <strong className="text-[#2C3480] font-mono">{recipientClinic.code}</strong>{' '}
-                  <span className="font-mono text-[#080808] font-semibold">({activeRoute.distanceKm} km)</span>
-                  <span className="text-[#737373] italic ml-1">• Pending Approval (Not Dispatched)</span>
+                <Truck className="w-3.5 h-3.5 text-[#A4AADE] flex-shrink-0" />
+                <span className="text-[11px] truncate text-[#A0A0AA]">
+                  Proposed: <strong className="text-white font-mono">{donorClinic.code}</strong> &rarr;{' '}
+                  <strong className="text-[#A4AADE] font-mono">{recipientClinic.code}</strong>{' '}
+                  <span className="font-mono text-white font-semibold">({activeRoute.distanceKm} km)</span>
+                  <span className="text-[#A0A0AA] italic ml-1">• Pending Approval (Not Dispatched)</span>
                 </span>
               </>
             ) : corridorMode === 'CONFIRMED' && activeRoute && donorClinic && recipientClinic && latestTransfer ? (
               <>
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#16815D] flex-shrink-0" />
-                <span className="text-[11px] truncate">
-                  Dispatched: <strong className="text-[#080808] font-mono">{donorClinic.code}</strong> &rarr;{' '}
-                  <strong className="text-[#16815D] font-mono">{recipientClinic.code}</strong>{' '}
-                  <span className="font-mono text-[#080808] font-semibold">({latestTransfer.quantity} units, {activeRoute.distanceKm} km)</span>
-                  <span className="text-[#16815D] font-medium ml-1">• Session Ledger Confirmed</span>
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#5AA98C] flex-shrink-0" />
+                <span className="text-[11px] truncate text-[#A0A0AA]">
+                  Dispatched: <strong className="text-white font-mono">{donorClinic.code}</strong> &rarr;{' '}
+                  <strong className="text-[#5AA98C] font-mono">{recipientClinic.code}</strong>{' '}
+                  <span className="font-mono text-white font-semibold">({latestTransfer.quantity} units, {activeRoute.distanceKm} km)</span>
+                  <span className="text-[#5AA98C] font-medium ml-1">• Session Ledger Confirmed</span>
                 </span>
               </>
             ) : (
               <>
-                <ShieldCheck className="w-3.5 h-3.5 text-[#16815D] flex-shrink-0" />
-                <span className="text-[11px] text-[#16815D] font-medium truncate">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#5AA98C] flex-shrink-0" />
+                <span className="text-[11px] text-[#5AA98C] font-medium truncate">
                   All 5 facilities above safety threshold
                 </span>
               </>
@@ -659,7 +659,7 @@ export const RegionalNetworkMap: React.FC<RegionalNetworkMapProps> = ({
           </div>
 
           {!activeInspectedClinic && (
-            <div className="flex items-center gap-2 flex-shrink-0 text-[10px] font-mono text-muted self-end sm:self-auto">
+            <div className="flex items-center gap-2 flex-shrink-0 text-[10px] font-mono text-[#A0A0AA] self-end sm:self-auto">
               <span>Min Buffer: 25–40u</span>
             </div>
           )}

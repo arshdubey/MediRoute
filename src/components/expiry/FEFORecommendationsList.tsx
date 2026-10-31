@@ -33,10 +33,10 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
 
   if (recommendations.length === 0) {
     return (
-      <div className="bg-white rounded-lg border border-[#E5E5E8] p-6 text-center space-y-2">
-        <ShieldCheck className="w-8 h-8 text-[#16815D] mx-auto" />
-        <h4 className="font-serif text-base text-[#080808]">All Expiring Batches Protected</h4>
-        <p className="text-xs text-[#737373] font-sans max-w-md mx-auto">
+      <div className="bg-[#171923] rounded-lg border border-[#2D3142] p-6 text-center space-y-2">
+        <ShieldCheck className="w-8 h-8 text-[#5AA98C] mx-auto" />
+        <h4 className="font-serif text-base text-white">All Expiring Batches Protected</h4>
+        <p className="text-xs text-[#A0A0AA] font-sans max-w-md mx-auto">
           No critical expiry surpluses currently require redistribution, or all eligible transfers have already been confirmed in this session.
         </p>
       </div>
@@ -46,22 +46,22 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
   return (
     <div className="space-y-4">
       {/* Section Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#E5E5E8]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-[#2D3142]">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="font-serif text-xl sm:text-2xl text-[#080808] font-normal tracking-tight">
+            <h3 className="font-serif text-xl sm:text-2xl text-white font-normal tracking-tight">
               Recommended Expiry-Safe Transfers
             </h3>
             <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-[#2C3480] text-white">
               {recommendations.length} Active {recommendations.length === 1 ? 'Proposal' : 'Proposals'}
             </span>
           </div>
-          <p className="text-xs text-[#737373] font-sans mt-0.5">
+          <p className="text-xs text-[#A0A0AA] font-sans mt-0.5">
             Ranked by First-Expiry-First-Out (FEFO) scoring, recipient absorption feasibility, and logistics proximity.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-sans text-[#16815D] bg-[#16815D]/10 px-2.5 py-1 rounded-lg border border-[#16815D]/30">
+        <div className="flex items-center gap-2 text-xs font-sans text-[#5AA98C] bg-[#16815D]/20 px-2.5 py-1 rounded-lg border border-[#16815D]/40">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>Donor Safety Reserve Guaranteed</span>
         </div>
@@ -77,10 +77,10 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
           return (
             <div
               key={rec.id}
-              className={`bg-white rounded-lg border transition-all ${
+              className={`rounded-lg border transition-all ${
                 isConfirmed
-                  ? 'border-[#16815D] bg-[#16815D]/5'
-                  : 'border-[#E5E5E8] hover:border-[#2C3480]/40 shadow-xs'
+                  ? 'border-[#16815D] bg-[#16815D]/15'
+                  : 'bg-[#171923] border-[#2D3142] hover:border-[#2C3480]/60 shadow-sm'
               }`}
             >
               {/* Card Header & Route Summary */}
@@ -89,23 +89,23 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                   {/* Medicine and Urgency */}
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-serif text-lg text-[#080808] font-normal">
+                      <span className="font-serif text-lg text-white font-normal">
                         {rec.medicineName}
                       </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#F5F5F7] border border-[#E5E5E8] text-[#737373]">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-[#222431] border border-[#2D3142] text-[#A0A0AA]">
                         {rec.dosageForm}
                       </span>
                       {rec.urgency === 'CRITICAL' ? (
-                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-lg bg-[#BB232B]/10 text-[#BB232B] border border-[#BB232B]/30">
+                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-lg bg-[#BB232B]/20 text-[#FF6B72] border border-[#BB232B]/40">
                           CRITICAL PRIORITY
                         </span>
                       ) : (
-                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-lg bg-[#B87A14]/10 text-[#B87A14] border border-[#B87A14]/30">
+                        <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-lg bg-[#D98A1A]/20 text-[#F5A623] border border-[#D98A1A]/40">
                           HIGH PRIORITY
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-[#737373] font-mono flex items-center gap-2">
+                    <div className="text-xs text-[#A0A0AA] font-mono flex items-center gap-2">
                       <span>Batch #{rec.batchNumber}</span>
                       <span>•</span>
                       <span>Expires in {rec.daysToExpiry} days ({rec.expiryDate})</span>
@@ -117,19 +117,19 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                   {/* Transfer Quantity & Value Avoided Badge */}
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <span className="text-[10px] text-[#737373] uppercase tracking-wider block font-sans">
+                      <span className="text-[10px] text-[#A0A0AA] uppercase tracking-wider block font-sans">
                         Safe Transfer Quantity
                       </span>
-                      <span className="text-xl font-mono font-bold text-[#080808]">
+                      <span className="text-xl font-mono font-bold text-white">
                         {rec.recommendedQuantity} units
                       </span>
                     </div>
-                    <div className="h-8 w-px bg-[#E5E5E8]" />
+                    <div className="h-8 w-px bg-[#2D3142]" />
                     <div className="text-right">
-                      <span className="text-[10px] text-[#16815D] uppercase tracking-wider block font-sans font-semibold">
+                      <span className="text-[10px] text-[#5AA98C] uppercase tracking-wider block font-sans font-semibold">
                         Wastage Avoided
                       </span>
-                      <span className="text-xl font-mono font-bold text-[#16815D]">
+                      <span className="text-xl font-mono font-bold text-[#5AA98C]">
                         ${rec.estimatedWastageValueSaved.toFixed(0)}
                       </span>
                     </div>
@@ -137,33 +137,33 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                 </div>
 
                 {/* Facilities Flow Diagram Row */}
-                <div className="grid grid-cols-1 md:grid-cols-7 gap-2.5 items-center bg-[#F5F5F7] p-3 rounded-lg border border-[#E5E5E8]">
+                <div className="grid grid-cols-1 md:grid-cols-7 gap-2.5 items-center bg-[#222431] p-3 rounded-lg border border-[#2D3142]">
                   {/* Source Facility (Donor) */}
                   <div className="md:col-span-3 space-y-1">
                     <div className="flex items-center justify-between text-xs font-sans">
-                      <span className="text-[10px] font-mono uppercase text-[#737373]">Donor Facility</span>
-                      <span className="font-semibold text-[#080808]">{rec.donorClinicCode}</span>
+                      <span className="text-[10px] font-mono uppercase text-[#A0A0AA]">Donor Facility</span>
+                      <span className="font-semibold text-white">{rec.donorClinicCode}</span>
                     </div>
-                    <div className="text-xs font-sans text-[#080808] font-medium truncate">
+                    <div className="text-xs font-sans text-white font-medium truncate">
                       {rec.donorClinicName}
                     </div>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[#737373] pt-1 border-t border-[#E5E5E8]">
-                      <span>Stock: {rec.donorAvailableStock} &rarr; <strong>{rec.donorPostStock}</strong></span>
-                      <span className="text-[#16815D]">Reserve: {rec.donorSafetyStock} (Safe)</span>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-[#A0A0AA] pt-1 border-t border-[#2D3142]">
+                      <span>Stock: {rec.donorAvailableStock} &rarr; <strong className="text-white">{rec.donorPostStock}</strong></span>
+                      <span className="text-[#5AA98C]">Reserve: {rec.donorSafetyStock} (Safe)</span>
                     </div>
                   </div>
 
                   {/* Center Transit Arrow */}
                   <div className="md:col-span-1 flex flex-col items-center justify-center py-1">
-                    <div className="text-[10px] font-mono text-[#737373]">
+                    <div className="text-[10px] font-mono text-[#A0A0AA]">
                       {rec.distanceKm} km
                     </div>
                     <div className="w-full flex items-center justify-center my-0.5">
                       <div className="h-0.5 w-full bg-[#2C3480] relative">
-                        <ArrowRight className="w-3.5 h-3.5 text-[#2C3480] absolute -right-1 -top-1.5" />
+                        <ArrowRight className="w-3.5 h-3.5 text-blue-400 absolute -right-1 -top-1.5" />
                       </div>
                     </div>
-                    <div className="text-[10px] font-mono text-[#737373]">
+                    <div className="text-[10px] font-mono text-[#A0A0AA]">
                       ~{rec.estimatedTransitMinutes}m transit
                     </div>
                   </div>
@@ -171,22 +171,22 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                   {/* Destination Facility (Recipient) */}
                   <div className="md:col-span-3 space-y-1">
                     <div className="flex items-center justify-between text-xs font-sans">
-                      <span className="text-[10px] font-mono uppercase text-[#737373]">Recipient Facility</span>
-                      <span className="font-semibold text-[#080808]">{rec.recipientClinicCode}</span>
+                      <span className="text-[10px] font-mono uppercase text-[#A0A0AA]">Recipient Facility</span>
+                      <span className="font-semibold text-white">{rec.recipientClinicCode}</span>
                     </div>
-                    <div className="text-xs font-sans text-[#080808] font-medium truncate">
+                    <div className="text-xs font-sans text-white font-medium truncate">
                       {rec.recipientClinicName}
                     </div>
-                    <div className="flex items-center justify-between text-[11px] font-mono text-[#737373] pt-1 border-t border-[#E5E5E8]">
-                      <span>Stock: {rec.recipientPreStock} &rarr; <strong>{rec.recipientPostStock}</strong></span>
-                      <span className="text-[#080808]">Runway: {rec.recipientPreDays}d &rarr; {rec.recipientPostDays}d</span>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-[#A0A0AA] pt-1 border-t border-[#2D3142]">
+                      <span>Stock: {rec.recipientPreStock} &rarr; <strong className="text-white">{rec.recipientPostStock}</strong></span>
+                      <span className="text-white">Runway: {rec.recipientPreDays}d &rarr; {rec.recipientPostDays}d</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Explanation Summary */}
-                <div className="text-xs text-[#737373] font-sans leading-relaxed bg-white p-3 rounded-lg border border-[#E5E5E8]">
-                  <span className="font-semibold text-[#080808]">Clinical Rationale: </span>
+                <div className="text-xs text-[#A0A0AA] font-sans leading-relaxed bg-[#222431] p-3 rounded-lg border border-[#2D3142]">
+                  <span className="font-semibold text-white">Clinical Rationale: </span>
                   {rec.rationale.summary}
                 </div>
 
@@ -195,12 +195,12 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                   <button
                     type="button"
                     onClick={() => toggleExpand(rec.id)}
-                    className="inline-flex items-center gap-1.5 text-xs text-[#737373] hover:text-[#080808] font-sans cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#A0A0AA] hover:text-white font-sans cursor-pointer"
                   >
                     {isExpanded ? (
                       <>
                         <ChevronUp className="w-3.5 h-3.5" />
-                        <span>Hide Constraint Analysis & Refused Facilities</span>
+                        <span>Hide Constraint Analysis &amp; Refused Facilities</span>
                       </>
                     ) : (
                       <>
@@ -214,14 +214,14 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                     <button
                       type="button"
                       onClick={() => onOpenSimulator(rec)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans text-[#080808] bg-[#F5F5F7] hover:bg-[#E5E5E8] border border-[#E5E5E8] transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-sans text-white bg-[#222431] hover:bg-[#2D3142] border border-[#2D3142] transition-colors cursor-pointer"
                     >
-                      <Sliders className="w-3.5 h-3.5 text-[#2C3480]" />
+                      <Sliders className="w-3.5 h-3.5 text-blue-400" />
                       <span>Simulate Wastage Model</span>
                     </button>
 
                     {isConfirmed ? (
-                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-sans font-medium text-[#16815D] bg-[#16815D]/10 border border-[#16815D]/30">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-sans font-medium text-[#5AA98C] bg-[#16815D]/20 border border-[#16815D]/40">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Dispatched in Session</span>
                       </span>
@@ -229,10 +229,10 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
                       <button
                         type="button"
                         onClick={() => onOpenConfirmModal(rec)}
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-sans font-medium text-white bg-[#2C3480] hover:bg-[#232a6b] transition-colors cursor-pointer shadow-xs"
+                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-sans font-medium text-white bg-[#2C3480] hover:bg-[#232a6b] transition-colors cursor-pointer shadow-md"
                       >
-                        <ShieldCheck className="w-3.5 h-3.5 text-[#16815D]" />
-                        <span>Review & Confirm Transfer</span>
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#5AA98C]" />
+                        <span>Review &amp; Confirm Transfer</span>
                       </button>
                     )}
                   </div>
@@ -241,46 +241,46 @@ export const FEFORecommendationsList: React.FC<FEFORecommendationsListProps> = (
 
               {/* Collapsible Detailed Constraint & Refusal Panel */}
               {isExpanded && (
-                <div className="px-5 pb-5 pt-3 border-t border-[#E5E5E8] bg-[#F5F5F7] space-y-3">
+                <div className="px-5 pb-5 pt-3 border-t border-[#2D3142] bg-[#11131a] space-y-3">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-sans">
-                    <div className="bg-white p-3 rounded-lg border border-[#E5E5E8] space-y-1">
-                      <span className="font-semibold text-[#080808] block">1. Local Expiry Feasibility Breakdown</span>
-                      <p className="text-[#737373] leading-relaxed">
+                    <div className="bg-[#171923] p-3 rounded-lg border border-[#2D3142] space-y-1">
+                      <span className="font-semibold text-white block">1. Local Expiry Feasibility Breakdown</span>
+                      <p className="text-[#A0A0AA] leading-relaxed">
                         {rec.rationale.expiryAnalysis}
                       </p>
                     </div>
 
-                    <div className="bg-white p-3 rounded-lg border border-[#E5E5E8] space-y-1">
-                      <span className="font-semibold text-[#080808] block">2. Recipient Consumption Feasibility</span>
-                      <p className="text-[#737373] leading-relaxed">
+                    <div className="bg-[#171923] p-3 rounded-lg border border-[#2D3142] space-y-1">
+                      <span className="font-semibold text-white block">2. Recipient Consumption Feasibility</span>
+                      <p className="text-[#A0A0AA] leading-relaxed">
                         {rec.rationale.recipientCapacity}
                       </p>
                     </div>
                   </div>
 
                   {/* Refused Candidate Facilities Table */}
-                  <div className="bg-white rounded-lg border border-[#E5E5E8] overflow-hidden">
-                    <div className="px-3.5 py-2 bg-[#F5F5F7] border-b border-[#E5E5E8] text-xs font-semibold text-[#080808]">
+                  <div className="bg-[#171923] rounded-lg border border-[#2D3142] overflow-hidden">
+                    <div className="px-3.5 py-2 bg-[#222431] border-b border-[#2D3142] text-xs font-semibold text-white">
                       Candidate Facilities Refused by FEFO Constraint Engine
                     </div>
-                    <div className="divide-y divide-[#E5E5E8] text-xs font-sans">
+                    <div className="divide-y divide-[#2D3142] text-xs font-sans">
                       {rejectedCandidates.length === 0 ? (
-                        <div className="p-3 text-[#737373] text-center">
+                        <div className="p-3 text-[#A0A0AA] text-center">
                           No other facilities possess matching formulary records.
                         </div>
                       ) : (
                         rejectedCandidates.map((c) => (
                           <div key={c.recipientClinicId} className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <div className="space-y-0.5">
-                              <span className="font-medium text-[#080808]">
+                              <span className="font-medium text-white">
                                 {c.recipientClinicCode} - {c.recipientClinicName}
                               </span>
-                              <div className="text-[11px] text-[#737373] font-mono">
+                              <div className="text-[11px] text-[#A0A0AA] font-mono">
                                 Stock: {c.currentStock} units | Burn: {c.avgDailyConsumption}/d | Usable Capacity: ~{c.recipientProjectedUsageBeforeExpiry} units
                               </div>
                             </div>
 
-                            <span className="text-[11px] text-[#BB232B] bg-[#BB232B]/10 px-2 py-1 rounded-lg border border-[#BB232B]/20 self-start sm:self-auto font-medium">
+                            <span className="text-[11px] text-[#FF6B72] bg-[#BB232B]/20 px-2 py-1 rounded-lg border border-[#BB232B]/40 self-start sm:self-auto font-medium">
                               {c.rejectionReason}
                             </span>
                           </div>
